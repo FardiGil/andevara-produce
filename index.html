@@ -1,97 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andevara Produce</title>
-<style>
-body{font-family:Arial, Helvetica, sans-serif;margin:0;background:#fafafa;color:#222}
-header{background:#0a3d2e;color:white;padding:60px 20px;text-align:center}
-header h1{margin:0;font-size:42px}
-header p{font-size:18px;margin-top:10px}
-section{max-width:1000px;margin:auto;padding:60px 20px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:white;border-radius:8px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
-h2{color:#0a3d2e}
-ul{padding-left:20px}
-.contact{background:#f2f2f2;border-radius:8px;padding:30px}
-footer{text-align:center;padding:30px;background:#0a3d2e;color:white}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andevara Produce | Premium Produce Brokerage</title>
+  <meta name="description" content="Andevara Produce connects reliable Peruvian produce with North American importers, with a focus on mango, Hass avocado, organic ginger, and organic turmeric." />
+  <style>
+    :root {
+      --green-dark: #173d2d;
+      --green: #24553f;
+      --green-soft: #edf4ef;
+      --gold: #c49a4a;
+      --text: #1f2933;
+      --muted: #5f6c76;
+      --white: #ffffff;
+      --border: #dfe7e2;
+      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #fafcfb;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(23,61,45,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .nav-links a:hover { color: var(--green-dark); }
+
+    .hero {
+      min-height: 84vh;
+      color: var(--white);
+      background:
+        linear-gradient(rgba(12, 32, 24, 0.55), rgba(12, 32, 24, 0.62)),
+        url('https://images.unsplash.com/photo-1603048719539-9ecb1ac98413?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 36px;
+      align-items: end;
+      padding: 80px 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.24);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.35rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      max-width: 780px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      max-width: 690px;
+      margin: 0 0 26px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #13251d;
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.38);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 22px;
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 14px;
+      font-size: 1.1rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .hero-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      font-size: 0.98rem;
+    }
+
+    .hero-card li:last-child { border-bottom: none; }
+
+    section {
+      padding: 84px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 0.82rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 14px;
+      color: var(--green-dark);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-content {
+      padding: 28px;
+    }
+
+    .founder-photo {
+      min-height: 440px;
+      background: url('https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .check-grid,
+    .season-grid,
+    .product-grid,
+    .trust-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .trust-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .trust-card,
+    .season-card,
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .trust-card {
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .trust-card h3 {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+      font-size: 1.02rem;
+    }
+
+    .trust-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-image {
+      height: 235px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .product-card h3,
+    .season-card h3 {
+      margin: 0 0 10px;
+      color: var(--green-dark);
+    }
+
+    .product-card p,
+    .season-card p,
+    .panel-content p,
+    .panel-content li {
+      color: var(--muted);
+    }
+
+    .panel-content ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .season-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .season-badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-soft);
+      padding: 7px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .network {
+      background: linear-gradient(180deg, #f3f8f4 0%, #ffffff 100%);
+    }
+
+    .network-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .network-image {
+      min-height: 360px;
+      background: url('https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: var(--green-dark);
+      color: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box .left,
+    .contact-box .right {
+      padding: 34px;
+    }
+
+    .contact-box .right {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .contact-box h2,
+    .contact-box h3 {
+      color: var(--white);
+      margin-top: 0;
+    }
+
+    .contact-box p,
+    .contact-box li {
+      color: rgba(255,255,255,0.88);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+    }
+
+    .contact-list li {
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1100px) {
+      .product-grid,
+      .season-grid,
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid,
+      .split,
+      .network-box,
+      .contact-box { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: 14px; }
+      .hero { min-height: auto; }
+      section { padding: 62px 0; }
+      .product-grid,
+      .season-grid,
+      .trust-grid { grid-template-columns: 1fr; }
+      .hero-card,
+      .panel-content,
+      .contact-box .left,
+      .contact-box .right { padding: 22px; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">Andevara Produce</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#seasons">Seasons</a>
+        <a href="#network">Supply Network</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
 
-<header>
-<h1>Andevara Produce</h1>
-<p>Connecting Reliable Peruvian Produce with North American Importers</p>
-<p>Mango | Hass Avocado | Organic Ginger | Organic Turmeric</p>
-</header>
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Premium Produce Brokerage</div>
+        <h1>Connecting Reliable Peruvian Produce with North American Importers</h1>
+        <p>
+          Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking mango, Hass avocado, organic ginger, and organic turmeric from Peru.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Get in Touch</a>
+          <a class="btn btn-secondary" href="#products">View Products</a>
+        </div>
+      </div>
 
-<section>
-<h2>About the Founder</h2>
-<p>Fardi Gil is a Peruvian produce export professional with more than 12 years of experience working with mango, avocado, organic ginger and turmeric for international markets including North America, Europe and Asia.</p>
+      <div class="hero-card">
+        <h3>Why Andevara Produce</h3>
+        <ul>
+          <li>12+ years of produce export experience</li>
+          <li>Based in Canada — connected to Peru</li>
+          <li>Focused on trust, traceability, and communication</li>
+          <li>Built for importers, distributors, and long-term partners</li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-<p>Through Andevara Produce, he focuses on connecting trusted Peruvian growers with importers seeking reliability, transparency and long‑term commercial partnerships.</p>
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">About the Founder</div>
+        <h2>Experience that understands both origin and market expectations</h2>
+        <p>
+          Your strongest advantage is credibility. This section positions Andevara Produce around real export knowledge, not generic trading language.
+        </p>
+      </div>
 
-<p><strong>Based in Canada — Connected to Peru</strong></p>
-</section>
+      <div class="split">
+        <div class="panel founder-photo"></div>
+        <div class="panel">
+          <div class="panel-content">
+            <p>
+              Fardi Gil is a Peruvian produce export professional with more than 12 years of experience working with mango, avocado, organic ginger, and turmeric for international markets including North America, Europe, and Asia.
+            </p>
+            <p>
+              Through Andevara Produce, he now focuses on connecting trusted Peruvian supply with importers seeking reliability, transparency, and long-term commercial relationships.
+            </p>
+            <ul>
+              <li>Hands-on understanding of sourcing, packing, cold chain, and export coordination</li>
+              <li>Commercial perspective shaped by years of working directly with international buyers</li>
+              <li>Clear focus on building dependable B2B relationships</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section>
-<h2>Why Buyers Work With Us</h2>
-<ul>
-<li>Direct knowledge of Peruvian supply chains</li>
-<li>12+ years of export experience</li>
-<li>Strong relationships with growers</li>
-<li>Focus on traceability and quality</li>
-<li>Professional communication with international buyers</li>
-</ul>
-</section>
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Why Buyers Work With Us</div>
+        <h2>A produce brokerage approach built on trust and execution</h2>
+        <p>
+          This section gives importers quick reasons to stay on the page and see Andevara Produce as a serious sourcing partner.
+        </p>
+      </div>
 
-<section>
-<h2>Products</h2>
-<div class="products">
-<div class="card">
-<h3>Kent Mango</h3>
-<p>Export-oriented sourcing from Peru for international markets.</p>
-</div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h3>Supply Chain Knowledge</h3>
+          <p>Direct understanding of Peruvian sourcing, packing, logistics, and export documentation.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Grower Relationships</h3>
+          <p>Strong connection to origin and a practical understanding of product flow and quality expectations.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Commercial Clarity</h3>
+          <p>Professional communication that reflects the needs of importers, distributors, and retail supply teams.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Traceability Focus</h3>
+          <p>Commitment to reliability, transparency, and consistent follow-through across the supply process.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Long-Term Mindset</h3>
+          <p>Partnership-driven approach designed to build trust over time, not just close one transaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<h3>Hass Avocado</h3>
-<p>Reliable supply coordination for importers and distributors.</p>
-</div>
+  <section id="products">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Products</div>
+        <h2>Core Peruvian products for international buyers</h2>
+        <p>
+          Large product visuals make the site feel much more professional. These image links can be replaced later with your own orchard, packing house, or supplier photos.
+        </p>
+      </div>
 
-<div class="card">
-<h3>Organic Ginger</h3>
-<p>High-quality Peruvian ginger sourced from trusted growers.</p>
-</div>
+      <div class="product-grid">
+        <article class="product-card">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=1000&q=80');"></div>
+          <div class="panel-content">
+            <h3>Kent Mango</h3>
+            <p>Export-oriented sourcing from Peru with a commercial focus on quality, presentation, and timing.</p>
+          </div>
+        </article>
 
-<div class="card">
-<h3>Organic Turmeric</h3>
-<p>Premium turmeric from Peru with strong international demand.</p>
-</div>
-</div>
-</section>
+        <article class="product-card">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1601039641847-7857b994d704?auto=format&fit=crop&w=1000&q=80');"></div>
+          <div class="panel-content">
+            <h3>Hass Avocado</h3>
+            <p>Reliable supply coordination for buyers looking for dependable product flow and market-oriented support.</p>
+          </div>
+        </article>
 
-<section>
-<h2>Peruvian Supply Network</h2>
-<p>Andevara Produce works closely with experienced growers, packing facilities and logistics partners in Peru to ensure consistent quality and reliable coordination for international buyers.</p>
-</section>
+        <article class="product-card">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1000&q=80');"></div>
+          <div class="panel-content">
+            <h3>Organic Ginger</h3>
+            <p>Peruvian organic ginger sourced with a focus on trusted origin, export readiness, and buyer communication.</p>
+          </div>
+        </article>
 
-<section>
-<div class="contact">
-<h2>Contact</h2>
-<p>If you are an importer or distributor interested in sourcing Peruvian produce, we would be glad to connect.</p>
+        <article class="product-card">
+          <div class="product-image" style="background-image:url('https://images.unsplash.com/photo-1611250188496-e966043a0629?auto=format&fit=crop&w=1000&q=80');"></div>
+          <div class="panel-content">
+            <h3>Organic Turmeric</h3>
+            <p>Premium Peruvian turmeric positioned for partners who value quality, transparency, and long-term supply discussions.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<p><strong>Fardi Gil</strong><br>
-Founder – Andevara Produce</p>
+  <section id="seasons">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Peru Seasonal Calendar</div>
+        <h2>Product seasons that help buyers plan ahead</h2>
+        <p>
+          Adding seasonality makes the page instantly more credible for produce buyers. Adjust the windows later if you want to reflect your exact supply regions.
+        </p>
+      </div>
 
-<p>Email: <strong>fgil@andevaraproduce.com</strong></p>
-</div>
-</section>
+      <div class="season-grid">
+        <article class="season-card">
+          <div class="panel-content">
+            <div class="season-badge">Season Window</div>
+            <h3>Kent Mango</h3>
+            <p><strong>Main season:</strong> November to March</p>
+            <p>Ideal for buyers planning winter sourcing programs from Peru.</p>
+          </div>
+        </article>
 
-<footer>
-<p>© 2026 Andevara Produce</p>
-</footer>
+        <article class="season-card">
+          <div class="panel-content">
+            <div class="season-badge">Season Window</div>
+            <h3>Hass Avocado</h3>
+            <p><strong>Main season:</strong> April to September</p>
+            <p>Supports spring and summer programs with strong Peruvian market relevance.</p>
+          </div>
+        </article>
 
+        <article class="season-card">
+          <div class="panel-content">
+            <div class="season-badge">Season Window</div>
+            <h3>Organic Ginger</h3>
+            <p><strong>Main season:</strong> Seasonal availability upon request</p>
+            <p>Supply can vary by origin area and program planning, making coordination especially important.</p>
+          </div>
+        </article>
+
+        <article class="season-card">
+          <div class="panel-content">
+            <div class="season-badge">Season Window</div>
+            <h3>Organic Turmeric</h3>
+            <p><strong>Main season:</strong> Seasonal availability upon request</p>
+            <p>Ideal for buyers seeking differentiated Peruvian origin with direct commercial coordination.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="network" id="network">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Trusted Peruvian Supply Network</div>
+        <h2>Built around growers, packing facilities, and export coordination</h2>
+        <p>
+          This gives the site the “company scale” feel you wanted, while staying honest and aligned with your brokerage model.
+        </p>
+      </div>
+
+      <div class="network-box">
+        <div class="panel-content">
+          <p>
+            Andevara Produce works closely with experienced growers, packing operations, and logistics partners in Peru to help support quality expectations, communication, and reliable coordination for international buyers.
+          </p>
+          <p>
+            Rather than presenting ourselves as a generic trader, we position the business as a sourcing and brokerage partner that understands both origin realities and buyer standards.
+          </p>
+          <ul>
+            <li>Close understanding of product origin and supply timing</li>
+            <li>Coordination mindset shaped by export experience</li>
+            <li>Professional communication designed for B2B relationships</li>
+          </ul>
+        </div>
+        <div class="network-image"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="left">
+          <h2>Let’s connect</h2>
+          <p>
+            If you are an importer or distributor interested in Peruvian produce, Andevara Produce would be glad to start a conversation.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:fgil@andevaraproduce.com">Email Us</a>
+          </div>
+        </div>
+        <div class="right">
+          <h3>Contact Information</h3>
+          <ul class="contact-list">
+            <li><strong>Fardi Gil</strong></li>
+            <li>Founder – Andevara Produce</li>
+            <li>fgil@andevaraproduce.com</li>
+            <li>Based in Canada — Connected to Peru</li>
+            <li>www.andevaraproduce.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 Andevara Produce. Premium Produce Brokerage connecting Peru with North America.
+    </div>
+  </footer>
 </body>
 </html>
