@@ -43,17 +43,18 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(11,90,58,0.10);
+      box-shadow: 0 8px 24px rgba(79,63,53,0.04);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
-      gap: 20px;
+      padding: 18px 0;
+      gap: 28px;
     }
 
     .brand {
@@ -63,26 +64,29 @@
     }
 
     .brand img {
-      height: 72px;
+      height: 84px;
       width: auto;
-      max-width: min(100%, 430px);
+      max-width: min(100%, 500px);
       object-fit: contain;
+      display: block;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 22px;
       flex-wrap: wrap;
       justify-content: flex-end;
+      margin-left: auto;
     }
 
     .nav-links {
       display: flex;
-      gap: 22px;
+      gap: 26px;
       flex-wrap: wrap;
       color: var(--muted);
-      font-size: 0.97rem;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .nav-links a:hover { color: var(--green-dark); }
@@ -456,7 +460,7 @@
       .panel-content,
       .contact-box .left,
       .contact-box .right { padding: 22px; }
-      .brand img { height: 58px; max-width: 320px; }
+      .brand img { height: 64px; max-width: 340px; }
     }
   </style>
 </head>
@@ -464,7 +468,7 @@
   <div class="topbar">
     <div class="container nav">
       <a href="#home" class="brand">
-        <img src="andevara-header-logo.png" alt="Andevara Produce logo" />
+        <img src="https://andevaraproduce.com/andevara-header-logo.png" alt="Andevara Produce logo" />
       </a>
       <div class="nav-right">
         <div class="nav-links">
