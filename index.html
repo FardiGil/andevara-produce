@@ -4,19 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andevara Produce | Premium Produce Brokerage</title>
-  <meta name="description" content="Andevara Produce connects reliable Peruvian produce with North American importers, with a focus on mango, Hass avocado, organic ginger, and organic turmeric." />
+  <meta name="description" content="Andevara Produce connects trusted Peruvian produce with international buyers through traceability, transparency, and dependable export coordination." />
   <style>
     :root {
-      --green-dark: #173d2d;
-      --green: #24553f;
-      --green-soft: #edf4ef;
-      --gold: #c49a4a;
-      --text: #1f2933;
-      --muted: #5f6c76;
-      --white: #ffffff;
-      --border: #dfe7e2;
-      --shadow: 0 12px 30px rgba(0,0,0,0.08);
-      --radius: 18px;
+      --bg: #f6f3eb;
+      --surface: #ffffff;
+      --surface-2: #f2efe7;
+      --text: #1f2a22;
+      --muted: #637060;
+      --brand: #2f6f3e;
+      --brand-dark: #1f4f2b;
+      --accent: #c3872b;
+      --line: #e4dfd2;
+      --shadow: 0 14px 40px rgba(27, 41, 31, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
       --max: 1180px;
     }
 
@@ -24,653 +27,1396 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: #fafcfb;
+      background: linear-gradient(180deg, #fbf9f4 0%, var(--bg) 100%);
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    p {
+      margin: 0;
+      text-align: justify;
+      color: var(--muted);
+    }
 
     .container {
-      width: min(var(--max), calc(100% - 32px));
+      width: min(calc(100% - 2rem), var(--max));
       margin: 0 auto;
     }
 
-    .topbar {
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--brand);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 99px;
+    }
+
+    header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(23,61,45,0.08);
+      backdrop-filter: blur(14px);
+      background: rgba(251, 249, 244, 0.88);
+      border-bottom: 1px solid rgba(228, 223, 210, 0.7);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
-      gap: 20px;
+      min-height: 78px;
+      gap: 18px;
     }
 
     .brand {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--green-dark);
-      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #2f6f3e, #1f4f2b);
+      display: grid;
+      place-items: center;
+      color: white;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.84rem;
+      color: var(--muted);
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 22px;
       flex-wrap: wrap;
-      color: var(--muted);
-      font-size: 0.97rem;
+      justify-content: center;
     }
 
-    .nav-links a:hover { color: var(--green-dark); }
+    .nav-links a {
+      font-size: 0.96rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--brand-dark);
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      padding: 4px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      gap: 4px;
+    }
+
+    .lang-toggle button {
+      border: 0;
+      background: transparent;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .lang-toggle button.active {
+      background: var(--brand);
+      color: white;
+    }
 
     .hero {
-      min-height: 84vh;
-      color: var(--white);
-      background:
-        linear-gradient(rgba(12, 32, 24, 0.62), rgba(12, 32, 24, 0.68)),
-        url('YOUR-HERO-PHOTO.jpg') center/cover no-repeat;
-      display: flex;
-      align-items: center;
+      padding: 70px 0 42px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 36px;
-      align-items: end;
-      padding: 80px 0;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
     }
 
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,0.24);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.08);
-      margin-bottom: 18px;
+    .hero-card,
+    .visual-card,
+    .feature-card,
+    .product-card,
+    .season-card,
+    .network-card,
+    .contact-card,
+    .footer-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 40px;
     }
 
     .hero h1 {
-      font-size: clamp(2.35rem, 5vw, 4.5rem);
-      line-height: 1.05;
+      font-size: clamp(2.7rem, 5vw, 5.1rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
       margin: 0 0 18px;
-      max-width: 780px;
     }
 
     .hero p {
-      font-size: 1.08rem;
-      max-width: 690px;
-      margin: 0 0 26px;
-      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+      font-size: 1.04rem;
+      margin-bottom: 26px;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      margin-bottom: 26px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 700;
-      transition: 0.2s ease;
       border: 1px solid transparent;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s ease;
     }
 
     .btn-primary {
-      background: var(--gold);
-      color: #13251d;
+      background: var(--brand);
+      color: white;
     }
 
-    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--brand-dark); }
 
     .btn-secondary {
       background: transparent;
-      color: var(--white);
-      border-color: rgba(255,255,255,0.38);
+      color: var(--brand-dark);
+      border-color: var(--line);
     }
 
-    .hero-card {
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 22px;
-      padding: 24px;
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card h3 {
-      margin: 0 0 14px;
-      font-size: 1.1rem;
-    }
-
-    .hero-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .hero-card li {
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.14);
-      font-size: 0.98rem;
-    }
-
-    .hero-card li:last-child { border-bottom: none; }
-
-    section {
-      padding: 84px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 32px;
-    }
-
-    .section-kicker {
-      color: var(--green);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: 0.82rem;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      line-height: 1.1;
-      margin: 0 0 14px;
-      color: var(--green-dark);
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .split {
+    .hero-stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 34px;
-      align-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
-    .panel {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
     }
 
-    .panel-content {
-      padding: 28px;
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--brand-dark);
     }
 
-    .founder-photo {
-      min-height: 440px;
-      background: #e9efe9;
-    }
-
-    .check-grid,
-    .season-grid,
-    .product-grid,
-    .trust-grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .trust-grid {
-      grid-template-columns: repeat(5, 1fr);
-    }
-
-    .trust-card,
-    .season-card,
-    .product-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .trust-card {
-      padding: 24px 20px;
-      text-align: center;
-    }
-
-    .trust-card h3 {
-      margin: 0 0 8px;
-      color: var(--green-dark);
-      font-size: 1.02rem;
-    }
-
-    .trust-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .product-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .product-image {
-      height: 235px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .product-card h3,
-    .season-card h3 {
-      margin: 0 0 10px;
-      color: var(--green-dark);
-    }
-
-    .product-card p,
-    .season-card p,
-    .panel-content p,
-    .panel-content li {
+    .stat span {
+      display: block;
+      font-size: 0.88rem;
       color: var(--muted);
     }
 
-    .panel-content ul {
-      margin: 12px 0 0;
-      padding-left: 18px;
+    .visual-card {
+      padding: 26px;
+      overflow: hidden;
+      min-height: 540px;
+      position: relative;
+      background: radial-gradient(circle at top, rgba(195, 135, 43, 0.08), transparent 32%), var(--surface);
     }
 
-    .season-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .season-badge {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--green);
-      background: var(--green-soft);
-      padding: 7px 12px;
+    .hero-badge {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(47, 111, 62, 0.1);
+      color: var(--brand-dark);
+      border: 1px solid rgba(47, 111, 62, 0.18);
       border-radius: 999px;
-      margin-bottom: 14px;
+      font-weight: 800;
+      padding: 10px 14px;
+      font-size: 0.85rem;
     }
 
-    .network {
-      background: linear-gradient(180deg, #f3f8f4 0%, #ffffff 100%);
-    }
-
-    .network-box {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
+    .hero-visual {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #f4efe3 0%, #fbfaf6 100%);
+      display: flex;
       align-items: center;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
+      justify-content: center;
+      padding: 14px;
     }
 
-    .network-image {
-      min-height: 360px;
-      background: #e9efe9;
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
     }
 
-    .contact-box {
+    .feature-card {
+      padding: 26px;
+    }
+
+    .feature-card h3,
+    .season-card h3,
+    .network-card h3,
+    .contact-card h3,
+    .product-copy h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      background: rgba(47, 111, 62, 0.1);
+      color: var(--brand-dark);
+    }
+
+    .about-grid,
+    .network-grid,
+    .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      background: var(--green-dark);
-      color: var(--white);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+      align-items: center;
     }
 
-    .contact-box .left,
-    .contact-box .right {
+    .about-copy,
+    .network-card,
+    .contact-card {
       padding: 34px;
     }
 
-    .contact-box .right {
-      background: rgba(255,255,255,0.06);
+    .about-copy p + p,
+    .contact-card p + p {
+      margin-top: 16px;
     }
 
-    .contact-box h2,
-    .contact-box h3 {
-      color: var(--white);
-      margin-top: 0;
+    .shelf-card {
+      padding: 28px;
+      min-height: 460px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
     }
 
-    .contact-box p,
-    .contact-box li {
-      color: rgba(255,255,255,0.88);
+    .products-grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .product-card {
+      padding: 22px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .product-media {
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #f6f2e8, #ebe6d7);
+      border: 1px solid var(--line);
+      min-height: 320px;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .product-copy {
+      padding: 8px 6px;
+    }
+
+    .product-copy .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(195, 135, 43, 0.12);
+      color: #8f5a09;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .bullet-list {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .bullet-list li {
+      color: var(--muted);
+      padding-left: 28px;
+      position: relative;
+      text-align: justify;
+    }
+
+    .bullet-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    .season-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .season-card {
+      padding: 28px;
+    }
+
+    .season-item {
+      display: grid;
+      gap: 12px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .season-item:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .season-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .season-head strong {
+      font-size: 1.02rem;
+    }
+
+    .season-head span {
+      color: var(--brand-dark);
+      font-weight: 800;
+    }
+
+    .month-bar {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+    }
+
+    .month {
+      height: 13px;
+      border-radius: 999px;
+      background: #e6e0d2;
+    }
+
+    .month.active { background: var(--brand); }
+    .month.accent { background: var(--accent); }
+
+    .months-labels {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.67rem;
+      color: var(--muted);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .network-card {
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    .network-visual {
+      margin-top: 20px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #eef3f7 0%, #dfe8ef 100%);
+      min-height: 310px;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+    }
+
+    .contact-grid {
+      align-items: stretch;
+    }
+
+    .contact-card {
+      min-height: 100%;
     }
 
     .contact-list {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 0;
+      margin-top: 22px;
+      display: grid;
+      gap: 14px;
     }
 
-    .contact-list li {
-      margin-bottom: 12px;
-      font-size: 1rem;
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--brand-dark);
+    }
+
+    .mini-form {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .mini-form input,
+    .mini-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font: inherit;
+      color: var(--text);
+    }
+
+    .mini-form textarea {
+      min-height: 140px;
+      resize: vertical;
     }
 
     footer {
-      padding: 28px 0 40px;
-      text-align: center;
+      padding: 0 0 34px;
+    }
+
+    .footer-card {
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-weight: 600;
     }
 
-    @media (max-width: 1100px) {
-      .product-grid,
-      .season-grid,
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .muted { color: var(--muted); }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1040px) {
       .hero-grid,
-      .split,
-      .network-box,
-      .contact-box { grid-template-columns: 1fr; }
+      .about-grid,
+      .network-grid,
+      .contact-grid,
+      .product-card,
+      .season-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr; }
+      .visual-card { min-height: auto; }
     }
 
-    @media (max-width: 720px) {
-      .nav { flex-direction: column; align-items: flex-start; }
-      .nav-links { gap: 14px; }
-      .hero { min-height: auto; }
-      section { padding: 62px 0; }
-      .product-grid,
-      .season-grid,
-      .trust-grid { grid-template-columns: 1fr; }
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 0 18px;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        gap: 14px;
+      }
+
       .hero-card,
-      .panel-content,
-      .contact-box .left,
-      .contact-box .right { padding: 22px; }
+      .about-copy,
+      .network-card,
+      .contact-card,
+      .season-card,
+      .feature-card,
+      .shelf-card {
+        padding: 24px;
+      }
+
+      .hero { padding-top: 34px; }
+      .section { padding: 68px 0; }
+      .product-card { padding: 18px; }
+      .footer-card { padding: 24px; }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
+  <header>
     <div class="container nav">
-      <a href="#home" class="brand">Andevara Produce</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#products">Products</a>
-        <a href="#seasons">Seasons</a>
-        <a href="#network">Supply Network</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-
-  <header class="hero" id="home">
-    <div class="container hero-grid">
-      <div>
-        <div class="eyebrow">Premium Produce Brokerage</div>
-        <h1>Connecting Reliable Peruvian Produce with North American Importers</h1>
-        <p>
-          Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking mango, Hass avocado, organic ginger, and organic turmeric from Peru.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Get in Touch</a>
-          <a class="btn btn-secondary" href="#products">View Products</a>
+      <a href="#home" class="brand" aria-label="Andevara Produce home">
+        <div class="brand-mark">A</div>
+        <div class="brand-text">
+          <strong>Andevara Produce</strong>
+          <span data-i18n="brand.subtitle">Premium Produce Brokerage</span>
         </div>
-      </div>
+      </a>
 
-      <div class="hero-card">
-        <h3>Why Andevara Produce</h3>
-        <ul>
-          <li>12+ years of produce export experience</li>
-          <li>Based in Canada — connected to Peru</li>
-          <li>Focused on trust, traceability, and communication</li>
-          <li>Built for importers, distributors, and long-term partners</li>
-        </ul>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#products" data-i18n="nav.products">Products</a>
+        <a href="#season" data-i18n="nav.season">Season Window</a>
+        <a href="#network" data-i18n="nav.network">Supply Network</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="lang-toggle" aria-label="Language selector">
+        <button type="button" class="active" data-lang-btn="en">EN</button>
+        <button type="button" data-lang-btn="es">ES</button>
       </div>
     </div>
   </header>
 
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">About the Founder</div>
-        <h2>Experience that understands both origin and market expectations</h2>
-        <p>
-          Andevara Produce is built on real export experience, practical origin knowledge, and a clear understanding of what international buyers expect from a sourcing partner.
-        </p>
-      </div>
-
-      <div class="split">
-        <div class="panel founder-photo"><img src="YOUR-FOUNDER-PHOTO.jpg" alt="Fardi Gil - Founder of Andevara Produce" style="width:100%;height:100%;object-fit:cover;min-height:440px;"></div>
-        <div class="panel">
-          <div class="panel-content">
-            <p style="text-align: justify;">
-              Fardi Gil is a Peruvian fresh produce export professional with more than 12 years of experience in international trade, specializing in mango, Hass avocado, organic ginger, and organic turmeric for global markets including North America, Europe, and Asia.
-            </p>
-
-            <p style="text-align: justify;">
-              Throughout his career, he has worked closely with growers, packing facilities, logistics providers, and international buyers, gaining a comprehensive understanding of the fresh produce supply chain—from origin sourcing and post-harvest handling to cold chain logistics and export coordination.
-            </p>
-
-            <p style="text-align: justify;">
-              Through Andevara Produce, he now focuses on connecting trusted Peruvian supply with importers seeking reliability, transparency, and long-term commercial partnerships.
-            </p>
-
-            <p style="text-align: justify;">
-              His approach combines origin knowledge, export experience, and a clear understanding of buyer expectations to support professional, dependable B2B relationships.
-            </p>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Why Buyers Work With Us</div>
-        <h2>A produce brokerage approach built on trust and execution</h2>
-        <p>
-          We combine origin knowledge, export experience, and professional communication to support buyers looking for reliable long-term partners in Peru.
-        </p>
-      </div>
-
-      <div class="trust-grid">
-        <div class="trust-card">
-          <h3>Supply Chain Knowledge</h3>
-          <p>Direct understanding of Peruvian sourcing, packing, logistics, and export documentation.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Grower Relationships</h3>
-          <p>Strong connection to origin and a practical understanding of product flow and quality expectations.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Commercial Clarity</h3>
-          <p>Professional communication that reflects the needs of importers, distributors, and retail supply teams.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Traceability Focus</h3>
-          <p>Commitment to reliability, transparency, and consistent follow-through across the supply process.</p>
-        </div>
-        <div class="trust-card">
-          <h3>Long-Term Mindset</h3>
-          <p>Partnership-driven approach designed to build trust over time, not just close one transaction.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="products">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Products</div>
-        <h2>Core Peruvian products for international buyers</h2>
-        <p>
-          Our focus is on commercially relevant Peruvian products supported by trusted origin relationships and clear coordination for international buyers.
-        </p>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-image"><img src="YOUR-MANGO-PHOTO.jpg" alt="Kent mango from Peru" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div class="panel-content">
-            <h3>Kent Mango</h3>
-            <p>Export-oriented sourcing from Peru with a commercial focus on quality, presentation, and timing.</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image"><img src="YOUR-AVOCADO-PHOTO.jpg" alt="Hass avocado from Peru" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div class="panel-content">
-            <h3>Hass Avocado</h3>
-            <p>Reliable supply coordination for buyers looking for dependable product flow and market-oriented support.</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image"><img src="YOUR-GINGER-PHOTO.jpg" alt="Organic ginger from Peru" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div class="panel-content">
-            <h3>Organic Ginger</h3>
-            <p>Peruvian organic ginger sourced with a focus on trusted origin, export readiness, and buyer communication.</p>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-image"><img src="YOUR-TURMERIC-PHOTO.jpg" alt="Organic turmeric from Peru" style="width:100%;height:100%;object-fit:cover;"></div>
-          <div class="panel-content">
-            <h3>Organic Turmeric</h3>
-            <p>Premium Peruvian turmeric positioned for partners who value quality, transparency, and long-term supply discussions.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="seasons">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Peru Seasonal Calendar</div>
-        <h2>Product seasons that help buyers plan ahead</h2>
-        <p>
-          Seasonal visibility helps buyers plan sourcing programs with greater clarity and better coordination.
-        </p>
-      </div>
-
-      <div class="season-grid">
-        <article class="season-card">
-          <div class="panel-content">
-            <div class="season-badge">Season Window</div>
-            <h3>Kent Mango</h3>
-            <p><strong>Main season:</strong> November to March</p>
-            <p>Ideal for buyers planning winter sourcing programs from Peru.</p>
-          </div>
-        </article>
-
-        <article class="season-card">
-          <div class="panel-content">
-            <div class="season-badge">Season Window</div>
-            <h3>Hass Avocado</h3>
-            <p><strong>Main season:</strong> April to September</p>
-            <p>Supports spring and summer programs with strong Peruvian market relevance.</p>
-          </div>
-        </article>
-
-        <article class="season-card">
-          <div class="panel-content">
-            <div class="season-badge">Season Window</div>
-            <h3>Organic Ginger</h3>
-            <p><strong>Main season:</strong> Seasonal availability upon request</p>
-            <p>Supply can vary by origin area and program planning, making coordination especially important.</p>
-          </div>
-        </article>
-
-        <article class="season-card">
-          <div class="panel-content">
-            <div class="season-badge">Season Window</div>
-            <h3>Organic Turmeric</h3>
-            <p><strong>Main season:</strong> Seasonal availability upon request</p>
-            <p>Ideal for buyers seeking differentiated Peruvian origin with direct commercial coordination.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="network" id="network">
-    <div class="container">
-      <div class="section-head">
-        <div class="section-kicker">Trusted Peruvian Supply Network</div>
-        <h2>Built around growers, packing facilities, and export coordination</h2>
-        <p>
-          Our network is built around trusted growers, packing operations, and export coordination that support international buyers with reliability and transparency.
-        </p>
-      </div>
-
-      <div class="network-box">
-        <div class="panel-content">
-          <p>
-            Andevara Produce works closely with experienced growers, packing operations, and logistics partners in Peru to help support quality expectations, communication, and reliable coordination for international buyers.
-          </p>
-          <p>
-            Rather than presenting ourselves as a generic trader, we position the business as a sourcing and brokerage partner that understands both origin realities and buyer standards.
-          </p>
-          <ul>
-            <li>Close understanding of product origin and supply timing</li>
-            <li>Coordination mindset shaped by export experience</li>
-            <li>Professional communication designed for B2B relationships</li>
-          </ul>
-        </div>
-        <div class="network-image"><img src="YOUR-SUPPLY-NETWORK-PHOTO.jpg" alt="Peruvian supply network" style="width:100%;height:100%;object-fit:cover;min-height:360px;"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="contact-box">
-        <div class="left">
-          <h2>Let’s connect</h2>
-          <p>
-            If you are an importer or distributor interested in Peruvian produce, Andevara Produce would be glad to start a conversation.
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow" data-i18n="hero.eyebrow">Trusted Peruvian Origin</div>
+          <h1 data-i18n="hero.title">Connecting trusted Peruvian produce with global markets.</h1>
+          <p data-i18n="hero.text">
+            Andevara Produce supports international buyers looking for dependable sourcing, export coordination, and a commercial partner focused on traceability, transparency, and long-term business relationships.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:fgil@andevaraproduce.com">Email Us</a>
+            <a class="btn btn-primary" href="#contact" data-i18n="hero.ctaPrimary">Contact Andevara</a>
+            <a class="btn btn-secondary" href="#products" data-i18n="hero.ctaSecondary">View Products</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>12+</strong>
+              <span data-i18n="hero.stat1">Years of export experience</span>
+            </div>
+            <div class="stat">
+              <strong>4</strong>
+              <span data-i18n="hero.stat2">Core premium categories</span>
+            </div>
+            <div class="stat">
+              <strong>B2B</strong>
+              <span data-i18n="hero.stat3">Buyer-focused brokerage model</span>
+            </div>
           </div>
         </div>
-        <div class="right">
-          <h3>Contact Information</h3>
-          <ul class="contact-list">
-            <li><strong>Fardi Gil</strong></li>
-            <li>Founder – Andevara Produce</li>
-            <li>fgil@andevaraproduce.com</li>
-            <li>Based in Canada — Connected to Peru</li>
-            <li>www.andevaraproduce.com</li>
-          </ul>
+
+        <div class="visual-card">
+          <div class="hero-badge" data-i18n="hero.badge">Commitment traceability</div>
+          <div class="hero-visual" aria-hidden="true">
+            <svg viewBox="0 0 700 560" width="100%" height="100%" role="img" aria-label="Premium produce display illustration">
+              <defs>
+                <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f7f3ea" />
+                  <stop offset="100%" stop-color="#ebe3d4" />
+                </linearGradient>
+                <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#3f8b4d" />
+                  <stop offset="100%" stop-color="#2f6f3e" />
+                </linearGradient>
+                <linearGradient id="mango" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffbf55" />
+                  <stop offset="100%" stop-color="#dd6d27" />
+                </linearGradient>
+                <linearGradient id="avocado" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4d7c3c" />
+                  <stop offset="100%" stop-color="#214128" />
+                </linearGradient>
+                <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#c99b63" />
+                  <stop offset="100%" stop-color="#a56f3d" />
+                </linearGradient>
+                <linearGradient id="ginger" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#e7c092" />
+                  <stop offset="100%" stop-color="#bc8f5b" />
+                </linearGradient>
+                <linearGradient id="turmeric" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#ffb439" />
+                  <stop offset="100%" stop-color="#d97a02" />
+                </linearGradient>
+              </defs>
+
+              <rect x="0" y="0" width="700" height="560" rx="34" fill="url(#sky)"/>
+              <ellipse cx="350" cy="490" rx="240" ry="32" fill="#d8cbb3" opacity="0.65"/>
+
+              <rect x="95" y="180" width="510" height="20" rx="10" fill="url(#wood)"/>
+              <rect x="95" y="320" width="510" height="20" rx="10" fill="url(#wood)"/>
+              <rect x="120" y="180" width="18" height="205" rx="9" fill="#b37c44"/>
+              <rect x="565" y="180" width="18" height="205" rx="9" fill="#b37c44"/>
+
+              <rect x="132" y="125" width="130" height="48" rx="16" fill="#fff8eb" stroke="#e7d8b8"/>
+              <text x="197" y="155" text-anchor="middle" font-size="20" font-family="Arial" fill="#5b4d35" font-weight="700">Mango Kent</text>
+              <g transform="translate(150,205)">
+                <ellipse cx="48" cy="45" rx="44" ry="60" fill="url(#mango)"/>
+                <path d="M40 0 C58 -16 82 -12 95 6 C70 16 52 14 40 0Z" fill="url(#leaf)"/>
+                <path d="M64 2 C72 -10 77 -17 81 -24" stroke="#674127" stroke-width="4" stroke-linecap="round"/>
+              </g>
+
+              <rect x="285" y="125" width="130" height="48" rx="16" fill="#fff8eb" stroke="#e7d8b8"/>
+              <text x="350" y="155" text-anchor="middle" font-size="20" font-family="Arial" fill="#5b4d35" font-weight="700">Avocado Hass</text>
+              <g transform="translate(310,210)">
+                <path d="M45 0 C78 0 102 28 102 65 C102 101 79 126 50 126 C24 126 0 102 0 70 C0 35 18 0 45 0Z" fill="url(#avocado)"/>
+                <path d="M46 1 C53 -8 60 -18 62 -26" stroke="#674127" stroke-width="4" stroke-linecap="round"/>
+                <path d="M42 -5 C56 -24 81 -27 98 -14 C78 -3 59 -1 42 -5Z" fill="url(#leaf)"/>
+              </g>
+
+              <rect x="438" y="125" width="130" height="48" rx="16" fill="#fff8eb" stroke="#e7d8b8"/>
+              <text x="503" y="146" text-anchor="middle" font-size="18" font-family="Arial" fill="#5b4d35" font-weight="700">Organic</text>
+              <text x="503" y="164" text-anchor="middle" font-size="18" font-family="Arial" fill="#5b4d35" font-weight="700">Ginger</text>
+              <g transform="translate(450,222)">
+                <path d="M10 64 C0 45 6 24 28 20 C31 6 46 -4 61 6 C78 -7 101 4 99 27 C121 30 127 52 113 68 C120 91 103 109 81 103 C69 117 42 117 31 99 C12 101 -2 88 10 64Z" fill="url(#ginger)"/>
+                <path d="M82 34 C88 47 82 63 69 68" stroke="#a67849" stroke-width="4" fill="none"/>
+              </g>
+
+              <rect x="240" y="265" width="220" height="48" rx="16" fill="#fff8eb" stroke="#e7d8b8"/>
+              <text x="350" y="286" text-anchor="middle" font-size="18" font-family="Arial" fill="#5b4d35" font-weight="700">Organic</text>
+              <text x="350" y="304" text-anchor="middle" font-size="18" font-family="Arial" fill="#5b4d35" font-weight="700">Turmeric</text>
+              <g transform="translate(250,348)">
+                <path d="M35 36 C20 15 45 -10 75 10 C95 -4 132 12 122 46 C146 59 143 90 114 95 C94 119 57 118 47 94 C18 94 5 61 35 36Z" fill="#c98b40"/>
+                <path d="M145 22 C159 8 184 12 194 31 C204 52 186 73 166 74 C148 75 134 62 136 44 C138 35 141 29 145 22Z" fill="#bd7b31"/>
+                <path d="M133 45 C152 28 173 25 190 33 C186 59 168 79 148 84 C141 73 137 58 133 45Z" fill="url(#turmeric)"/>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="eyebrow" data-i18n="about.eyebrow">About Andevara</div>
+        <h2 class="section-title" data-i18n="about.title">Export experience shaped into a focused produce brokerage model.</h2>
+        <p class="section-intro" data-i18n="about.intro">
+          Andevara Produce brings together commercial understanding, sourcing visibility, and practical coordination for international buyers seeking premium produce from Peru.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-copy hero-card">
+            <p data-i18n="about.p1">
+              Fardi Gil is a Peruvian produce export professional with more than 12 years of experience working with mango, avocado, organic ginger, and organic turmeric for international markets including North America, Europe, and Asia.
+            </p>
+            <p data-i18n="about.p2">
+              Through Andevara Produce, he now focuses on connecting trusted Peruvian supply with importers seeking reliability, transparency, and long-term commercial relationships.
+            </p>
+            <ul class="bullet-list">
+              <li data-i18n="about.b1">Hands-on understanding of sourcing, packing, cold chain, and export coordination.</li>
+              <li data-i18n="about.b2">Commercial perspective shaped by years of working directly with international buyers.</li>
+              <li data-i18n="about.b3">Clear focus on building dependable B2B relationships with commitment to traceability.</li>
+            </ul>
+          </div>
+
+          <div class="shelf-card" aria-hidden="true">
+            <svg viewBox="0 0 700 500" width="100%" height="100%" role="img" aria-label="Produce shelf illustration">
+              <defs>
+                <linearGradient id="board" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#c9955f" />
+                  <stop offset="100%" stop-color="#9e6d40" />
+                </linearGradient>
+                <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f7f2e8" />
+                  <stop offset="100%" stop-color="#efe7d8" />
+                </linearGradient>
+              </defs>
+              <rect width="700" height="500" rx="28" fill="url(#bg2)"/>
+              <rect x="80" y="160" width="540" height="18" rx="9" fill="url(#board)"/>
+              <rect x="80" y="310" width="540" height="18" rx="9" fill="url(#board)"/>
+              <rect x="105" y="160" width="16" height="190" rx="8" fill="#a67242"/>
+              <rect x="579" y="160" width="16" height="190" rx="8" fill="#a67242"/>
+
+              <g transform="translate(128,90)">
+                <rect x="0" y="0" width="120" height="44" rx="14" fill="#fff8eb" stroke="#e8dbbf"/>
+                <text x="60" y="28" font-size="18" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Mango Kent</text>
+                <ellipse cx="62" cy="104" rx="40" ry="56" fill="#f09a38"/>
+                <path d="M53 54 C73 43 93 44 111 58 C90 71 70 72 53 54Z" fill="#387c47"/>
+              </g>
+
+              <g transform="translate(286,88)">
+                <rect x="0" y="0" width="128" height="44" rx="14" fill="#fff8eb" stroke="#e8dbbf"/>
+                <text x="64" y="28" font-size="18" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Avocado Hass</text>
+                <path d="M52 48 C82 48 102 72 102 109 C102 145 82 168 54 168 C26 168 4 146 4 113 C4 79 23 48 52 48Z" fill="#2d4d2e"/>
+              </g>
+
+              <g transform="translate(463,92)">
+                <rect x="0" y="0" width="128" height="52" rx="14" fill="#fff8eb" stroke="#e8dbbf"/>
+                <text x="64" y="24" font-size="17" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Organic</text>
+                <text x="64" y="43" font-size="17" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Ginger</text>
+                <path d="M20 120 C8 100 14 72 38 66 C42 52 57 42 72 50 C87 39 110 47 112 67 C131 73 137 95 126 109 C131 129 115 145 96 140 C84 151 59 151 48 138 C28 140 12 132 20 120Z" fill="#c79865"/>
+              </g>
+
+              <g transform="translate(245,250)">
+                <rect x="0" y="0" width="210" height="52" rx="14" fill="#fff8eb" stroke="#e8dbbf"/>
+                <text x="105" y="24" font-size="17" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Organic</text>
+                <text x="105" y="43" font-size="17" text-anchor="middle" font-family="Arial" font-weight="700" fill="#5b4d35">Turmeric</text>
+                <path d="M28 98 C18 78 41 61 67 75 C83 61 107 63 121 81 C148 76 164 104 150 121 C140 135 121 140 100 134 C88 144 67 146 51 138 C31 138 19 121 28 98Z" fill="#be8340"/>
+                <path d="M147 102 C160 88 186 89 196 108 C204 123 197 145 176 149 C157 152 142 141 141 124 C141 117 143 110 147 102Z" fill="#f39a12"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L4 7V12C4 17 7.4 21.5 12 22C16.6 21.5 20 17 20 12V7L12 3Z" stroke="currentColor" stroke-width="2"/><path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 data-i18n="features.t1">Commitment traceability</h3>
+            <p data-i18n="features.p1">Visibility matters. Andevara is designed to support sourcing confidence through clearer product, season, and origin alignment.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6H20V18H4V6Z" stroke="currentColor" stroke-width="2"/><path d="M8 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 14H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 data-i18n="features.t2">Commercial clarity</h3>
+            <p data-i18n="features.p2">A practical B2B approach focused on communication, realistic coordination, and buyer expectations.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7L12 3L21 7L12 11L3 7Z" stroke="currentColor" stroke-width="2"/><path d="M3 12L12 16L21 12" stroke="currentColor" stroke-width="2"/><path d="M3 17L12 21L21 17" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+            <h3 data-i18n="features.t3">Export perspective</h3>
+            <p data-i18n="features.p3">Built from direct experience in sourcing, packing, logistics, and international customer management.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="products">
+      <div class="container">
+        <div class="eyebrow" data-i18n="products.eyebrow">Products</div>
+        <h2 class="section-title" data-i18n="products.title">Core produce categories presented with a premium, buyer-facing identity.</h2>
+        <p class="section-intro" data-i18n="products.intro">The product section combines commercial positioning with strong visual storytelling to support a cleaner first impression for importers and distributors.</p>
+
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-media" aria-hidden="true">
+              <svg viewBox="0 0 700 440" width="100%" height="100%" role="img" aria-label="Mango tree field illustration">
+                <rect width="700" height="440" rx="28" fill="#efe5cf"/>
+                <rect y="260" width="700" height="180" fill="#b7cf8c"/>
+                <ellipse cx="130" cy="255" rx="90" ry="120" fill="#5d8a47"/>
+                <ellipse cx="300" cy="245" rx="96" ry="124" fill="#648f4d"/>
+                <ellipse cx="470" cy="248" rx="96" ry="126" fill="#5b8647"/>
+                <ellipse cx="610" cy="253" rx="84" ry="114" fill="#608b4a"/>
+                <rect x="286" y="160" width="18" height="122" rx="9" fill="#7a5132"/>
+                <path d="M335 93 C383 79 429 91 461 129 C407 149 357 149 335 93Z" fill="#397446"/>
+                <path d="M373 127 C413 111 459 126 490 165 C446 180 399 174 373 127Z" fill="#4a8251"/>
+                <path d="M406 147 C445 138 473 149 492 175" stroke="#7a5132" stroke-width="5" stroke-linecap="round"/>
+                <ellipse cx="435" cy="197" rx="34" ry="50" fill="#e79333"/>
+                <path d="M423 151 C444 139 462 141 478 154 C455 167 439 166 423 151Z" fill="#2f6f3e"/>
+                <ellipse cx="382" cy="216" rx="26" ry="40" fill="#f0ab4d"/>
+                <ellipse cx="465" cy="223" rx="20" ry="31" fill="#d86b27"/>
+              </svg>
+            </div>
+            <div class="product-copy">
+              <span class="tag" data-i18n="products.mango.tag">Premium fruit</span>
+              <h3 data-i18n="products.mango.title">Mango Kent</h3>
+              <p data-i18n="products.mango.text">A visual centered on a Kent mango hanging from the tree inside a mango field reinforces origin, freshness, and supply connection from the first glance.</p>
+              <ul class="bullet-list">
+                <li data-i18n="products.mango.b1">Strong visual emphasis on orchard origin and premium fruit presentation.</li>
+                <li data-i18n="products.mango.b2">Suitable for importers looking for consistent seasonal planning and clear product identity.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media" aria-hidden="true">
+              <svg viewBox="0 0 700 440" width="100%" height="100%" role="img" aria-label="Avocado field illustration">
+                <rect width="700" height="440" rx="28" fill="#efe9d6"/>
+                <rect y="265" width="700" height="175" fill="#b3cb8d"/>
+                <ellipse cx="130" cy="255" rx="90" ry="120" fill="#5c8550"/>
+                <ellipse cx="310" cy="245" rx="110" ry="130" fill="#587f4c"/>
+                <ellipse cx="500" cy="250" rx="95" ry="122" fill="#638b56"/>
+                <rect x="286" y="165" width="18" height="120" rx="9" fill="#704a2f"/>
+                <path d="M335 92 C369 77 416 83 449 115 C414 135 372 133 335 92Z" fill="#3f7b49"/>
+                <path d="M377 122 C421 105 465 122 495 160 C457 175 414 170 377 122Z" fill="#4a8552"/>
+                <path d="M414 150 C426 130 455 118 478 123 C465 150 442 168 414 150Z" fill="#3f7b49"/>
+                <path d="M435 166 C463 166 486 189 486 223 C486 257 464 279 437 279 C409 279 387 256 387 226 C387 191 406 166 435 166Z" fill="#284428"/>
+              </svg>
+            </div>
+            <div class="product-copy">
+              <span class="tag" data-i18n="products.avocado.tag">Field origin</span>
+              <h3 data-i18n="products.avocado.title">Avocado Hass</h3>
+              <p data-i18n="products.avocado.text">The avocado section uses a Hass fruit hanging on the tree in an avocado field to communicate crop origin, natural growth, and export-ready identity.</p>
+              <ul class="bullet-list">
+                <li data-i18n="products.avocado.b1">Premium orchard-style presentation aligned with a professional B2B website.</li>
+                <li data-i18n="products.avocado.b2">Designed to support trust, product recognition, and buyer interest.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media" aria-hidden="true">
+              <svg viewBox="0 0 700 440" width="100%" height="100%" role="img" aria-label="Whole and cut ginger illustration">
+                <rect width="700" height="440" rx="28" fill="#efe8dc"/>
+                <ellipse cx="350" cy="336" rx="210" ry="36" fill="#dccfb9"/>
+                <g transform="translate(162,136)">
+                  <path d="M42 135 C18 108 21 70 58 60 C65 27 93 9 121 21 C147 -4 189 6 196 43 C233 49 250 84 228 117 C241 157 214 183 176 175 C154 198 109 198 87 171 C51 172 20 164 42 135Z" fill="#c79865"/>
+                  <path d="M118 52 C136 69 130 101 111 113" stroke="#a67a49" stroke-width="6" fill="none" stroke-linecap="round"/>
+                </g>
+                <g transform="translate(392,158)">
+                  <path d="M40 110 C25 87 30 53 62 46 C69 24 93 12 117 22 C142 6 171 20 176 46 C208 53 223 84 205 107 C211 132 193 156 165 155 C147 173 112 176 94 155 C61 156 33 144 40 110Z" fill="#c08f5d"/>
+                  <path d="M87 47 C108 69 101 99 83 112" stroke="#9d7142" stroke-width="6" fill="none" stroke-linecap="round"/>
+                  <path d="M56 81 C83 58 116 57 144 72 C136 108 116 133 88 147 C71 130 62 110 56 81Z" fill="#f4d4a7"/>
+                </g>
+              </svg>
+            </div>
+            <div class="product-copy">
+              <span class="tag" data-i18n="products.ginger.tag">Organic root</span>
+              <h3 data-i18n="products.ginger.title">Organic Ginger</h3>
+              <p data-i18n="products.ginger.text">This section presents one whole ginger root and one cut in half, giving more product detail while keeping the visual style clean and premium.</p>
+              <ul class="bullet-list">
+                <li data-i18n="products.ginger.b1">Highlights product texture and freshness without overloading the page.</li>
+                <li data-i18n="products.ginger.b2">Supports a stronger visual identity for organic root categories.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media" aria-hidden="true">
+              <svg viewBox="0 0 700 440" width="100%" height="100%" role="img" aria-label="Whole and cut turmeric illustration">
+                <rect width="700" height="440" rx="28" fill="#efe6d8"/>
+                <ellipse cx="350" cy="334" rx="210" ry="34" fill="#dcc9ab"/>
+                <g transform="translate(180,160)">
+                  <path d="M45 104 C29 78 46 50 78 58 C95 31 130 31 145 56 C177 48 199 66 201 95 C224 109 226 137 205 152 C189 166 169 169 145 160 C126 177 95 179 77 165 C50 168 29 150 45 104Z" fill="#bd8341"/>
+                  <path d="M152 117 C171 88 209 85 230 108 C250 129 243 161 212 170 C187 177 162 165 154 140 C151 133 151 124 152 117Z" fill="#f09412"/>
+                  <path d="M154 116 C173 100 201 96 225 108 C220 140 198 170 173 176 C159 157 153 136 154 116Z" fill="#ffb328"/>
+                </g>
+              </svg>
+            </div>
+            <div class="product-copy">
+              <span class="tag" data-i18n="products.turmeric.tag">Organic root</span>
+              <h3 data-i18n="products.turmeric.title">Organic Turmeric</h3>
+              <p data-i18n="products.turmeric.text">The turmeric visual places a whole root above a cut piece to show the category clearly while maintaining a polished and modern presentation.</p>
+              <ul class="bullet-list">
+                <li data-i18n="products.turmeric.b1">Bright inner color improves category differentiation and visual appeal.</li>
+                <li data-i18n="products.turmeric.b2">Maintains consistency with the premium look used across the website.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="season">
+      <div class="container">
+        <div class="eyebrow" data-i18n="season.eyebrow">Season Window</div>
+        <h2 class="section-title" data-i18n="season.title">Clear seasonal visibility for buyer planning.</h2>
+        <p class="section-intro" data-i18n="season.intro">The seasonal chart is structured to give a straightforward overview of main shipping windows for the core Andevara categories.</p>
+
+        <div class="season-grid">
+          <div class="season-card">
+            <h3 data-i18n="season.mainTitle">Main Season Overview</h3>
+
+            <div class="season-item">
+              <div class="season-head">
+                <strong>Mango Kent</strong>
+                <span data-i18n="season.mango">October to March</span>
+              </div>
+              <div class="month-bar">
+                <span class="month"></span><span class="month"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month"></span><span class="month"></span><span class="month"></span><span class="month"></span>
+              </div>
+            </div>
+
+            <div class="season-item">
+              <div class="season-head">
+                <strong>Avocado Hass</strong>
+                <span data-i18n="season.avocado">April to September</span>
+              </div>
+              <div class="month-bar">
+                <span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month"></span><span class="month"></span><span class="month"></span><span class="month"></span><span class="month"></span><span class="month"></span>
+              </div>
+            </div>
+
+            <div class="season-item">
+              <div class="season-head">
+                <strong>Organic Ginger</strong>
+                <span data-i18n="season.ginger">July to January</span>
+              </div>
+              <div class="month-bar">
+                <span class="month"></span><span class="month"></span><span class="month"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month active"></span><span class="month"></span><span class="month"></span>
+              </div>
+            </div>
+
+            <div class="season-item">
+              <div class="season-head">
+                <strong>Organic Turmeric</strong>
+                <span data-i18n="season.turmeric">July to January</span>
+              </div>
+              <div class="month-bar">
+                <span class="month"></span><span class="month"></span><span class="month"></span><span class="month accent"></span><span class="month accent"></span><span class="month accent"></span><span class="month accent"></span><span class="month accent"></span><span class="month accent"></span><span class="month accent"></span><span class="month"></span><span class="month"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="season-card">
+            <h3 data-i18n="season.monthsTitle">Calendar Reference</h3>
+            <p data-i18n="season.monthsText">This monthly reference is included to keep the chart intuitive for international buyers reviewing possible sourcing windows.</p>
+            <div class="months-labels" aria-hidden="true" style="margin-top: 26px; font-size: .78rem; gap: 10px;">
+              <span data-i18n="months.jan">Jan</span>
+              <span data-i18n="months.feb">Feb</span>
+              <span data-i18n="months.mar">Mar</span>
+              <span data-i18n="months.apr">Apr</span>
+              <span data-i18n="months.may">May</span>
+              <span data-i18n="months.jun">Jun</span>
+              <span data-i18n="months.jul">Jul</span>
+              <span data-i18n="months.aug">Aug</span>
+              <span data-i18n="months.sep">Sep</span>
+              <span data-i18n="months.oct">Oct</span>
+              <span data-i18n="months.nov">Nov</span>
+              <span data-i18n="months.dec">Dec</span>
+            </div>
+            <div class="hero-stats" style="margin-top: 28px;">
+              <div class="stat">
+                <strong>4</strong>
+                <span data-i18n="season.stat1">Strategic categories</span>
+              </div>
+              <div class="stat">
+                <strong>2</strong>
+                <span data-i18n="season.stat2">Organic root items</span>
+              </div>
+              <div class="stat">
+                <strong>B2B</strong>
+                <span data-i18n="season.stat3">Planning-oriented layout</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="network">
+      <div class="container network-grid">
+        <div>
+          <div class="eyebrow" data-i18n="network.eyebrow">Supply Network</div>
+          <h2 class="section-title" data-i18n="network.title">Product origin connected to logistics visibility.</h2>
+          <p class="section-intro" data-i18n="network.intro">The supply section combines core product references with container and vessel elements to visually connect agricultural origin and export movement.</p>
+        </div>
+        <div class="network-card">
+          <h3 data-i18n="network.cardTitle">Integrated produce and export flow</h3>
+          <p data-i18n="network.cardText">Mango Kent, Avocado Hass, Organic Ginger, and Organic Turmeric are visually integrated with containers and container ships to reinforce the export-oriented identity of the brand.</p>
+          <div class="network-visual" aria-hidden="true">
+            <svg viewBox="0 0 760 440" width="100%" height="100%" role="img" aria-label="Supply network illustration with products, containers and vessel">
+              <rect width="760" height="440" rx="28" fill="#dfe8ef"/>
+              <rect y="280" width="760" height="160" fill="#7aa5c9"/>
+              <rect y="320" width="760" height="120" fill="#5c87ae"/>
+              <rect y="238" width="760" height="44" fill="#93c08c"/>
+
+              <g transform="translate(36,140)">
+                <rect x="0" y="88" width="82" height="56" rx="8" fill="#d77b33"/>
+                <rect x="90" y="88" width="82" height="56" rx="8" fill="#3e7e4a"/>
+                <rect x="180" y="88" width="82" height="56" rx="8" fill="#c98b3e"/>
+                <rect x="270" y="88" width="82" height="56" rx="8" fill="#d49b2c"/>
+                <rect x="24" y="66" width="8" height="22" fill="#7a5132"/>
+                <ellipse cx="42" cy="54" rx="26" ry="36" fill="#ef9c3b"/>
+                <path d="M34 24 C50 15 67 16 82 29 C63 39 49 39 34 24Z" fill="#2f6f3e"/>
+                <path d="M140 30 C160 30 175 46 175 71 C175 95 160 110 141 110 C121 110 106 95 106 73 C106 46 120 30 140 30Z" fill="#2d4d2e"/>
+                <path d="M227 34 C216 20 221 0 241 0 C244 -13 258 -20 271 -11 C286 -23 305 -16 308 2 C326 6 334 21 325 36 C329 52 316 66 296 62 C286 75 262 74 252 60 C232 61 220 51 227 34Z" fill="#c79865"/>
+                <path d="M338 45 C326 26 343 8 367 18 C379 4 406 4 418 21 C442 15 458 30 460 52 C478 62 478 85 461 97 C448 109 433 111 415 105 C401 117 378 120 364 109 C342 110 327 95 338 45Z" fill="#c18441"/>
+                <path d="M421 58 C436 44 456 42 471 50 C468 73 451 96 430 102 C423 88 420 74 421 58Z" fill="#f3a222"/>
+              </g>
+
+              <g transform="translate(360,180)">
+                <path d="M26 95 H312 L354 168 H0 Z" fill="#334b61"/>
+                <rect x="84" y="52" width="170" height="42" fill="#f3f6fa"/>
+                <rect x="126" y="18" width="84" height="34" fill="#e8edf2"/>
+                <rect x="42" y="72" width="58" height="28" fill="#d87a32"/>
+                <rect x="104" y="72" width="58" height="28" fill="#3d7d49"/>
+                <rect x="166" y="72" width="58" height="28" fill="#c98b3e"/>
+                <rect x="228" y="72" width="58" height="28" fill="#d5a22f"/>
+                <circle cx="74" cy="173" r="6" fill="#243543"/>
+                <circle cx="118" cy="173" r="6" fill="#243543"/>
+                <circle cx="162" cy="173" r="6" fill="#243543"/>
+                <circle cx="206" cy="173" r="6" fill="#243543"/>
+                <circle cx="250" cy="173" r="6" fill="#243543"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <div class="eyebrow" data-i18n="contact.eyebrow">Contact</div>
+          <h2 class="section-title" data-i18n="contact.title">Let’s connect around dependable Peruvian supply.</h2>
+          <p data-i18n="contact.text1">This contact section is designed for future outreach with importers, distributors, and sourcing partners interested in premium fruit and organic roots from Peru.</p>
+          <p data-i18n="contact.text2">You can replace the sample fields below with your final business details, WhatsApp, LinkedIn profile, or inquiry form connection when ready.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong data-i18n="contact.emailLabel">Email</strong>
+              <span>fgil@andevaraproduce.com</span>
+            </div>
+            <div class="contact-item">
+              <strong data-i18n="contact.focusLabel">Focus</strong>
+              <span data-i18n="contact.focusValue">Mango Kent, Avocado Hass, Organic Ginger, Organic Turmeric</span>
+            </div>
+            <div class="contact-item">
+              <strong data-i18n="contact.modelLabel">Model</strong>
+              <span data-i18n="contact.modelValue">Premium produce brokerage for international buyers</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3 data-i18n="contact.formTitle">Inquiry form preview</h3>
+          <p data-i18n="contact.formText">This front-end form is included as a visual placeholder. It can later be connected to Formspree, Netlify Forms, a custom email service, or your preferred CRM.</p>
+          <form class="mini-form" onsubmit="event.preventDefault(); alert(currentLang === 'en' ? 'Form demo only. Connect it later to your preferred service.' : 'Formulario de demostración. Luego puedes conectarlo con el servicio que prefieras.');">
+            <label>
+              <span class="sr-only" data-i18n="contact.name">Name</span>
+              <input type="text" data-i18n-placeholder="contact.namePlaceholder" placeholder="Your name" />
+            </label>
+            <label>
+              <span class="sr-only" data-i18n="contact.email">Email</span>
+              <input type="email" data-i18n-placeholder="contact.emailPlaceholder" placeholder="Your email" />
+            </label>
+            <label>
+              <span class="sr-only" data-i18n="contact.message">Message</span>
+              <textarea data-i18n-placeholder="contact.messagePlaceholder" placeholder="Tell us about your sourcing needs"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit" data-i18n="contact.submit">Send inquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div class="container">
-      © 2026 Andevara Produce. Premium Produce Brokerage connecting Peru with North America.
+    <div class="container footer-card">
+      <div>
+        <strong>Andevara Produce</strong>
+        <p class="muted" data-i18n="footer.text">Premium Produce Brokerage focused on traceability, transparency, and long-term B2B relationships.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#products" data-i18n="nav.products">Products</a>
+        <a href="#season" data-i18n="nav.season">Season Window</a>
+        <a href="#network" data-i18n="nav.network">Supply Network</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </div>
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      en: {
+        'brand.subtitle': 'Premium Produce Brokerage',
+        'nav.about': 'About',
+        'nav.products': 'Products',
+        'nav.season': 'Season Window',
+        'nav.network': 'Supply Network',
+        'nav.contact': 'Contact',
+
+        'hero.eyebrow': 'Trusted Peruvian Origin',
+        'hero.title': 'Connecting trusted Peruvian produce with global markets.',
+        'hero.text': 'Andevara Produce supports international buyers looking for dependable sourcing, export coordination, and a commercial partner focused on traceability, transparency, and long-term business relationships.',
+        'hero.ctaPrimary': 'Contact Andevara',
+        'hero.ctaSecondary': 'View Products',
+        'hero.stat1': 'Years of export experience',
+        'hero.stat2': 'Core premium categories',
+        'hero.stat3': 'Buyer-focused brokerage model',
+        'hero.badge': 'Commitment traceability',
+
+        'about.eyebrow': 'About Andevara',
+        'about.title': 'Export experience shaped into a focused produce brokerage model.',
+        'about.intro': 'Andevara Produce brings together commercial understanding, sourcing visibility, and practical coordination for international buyers seeking premium produce from Peru.',
+        'about.p1': 'Fardi Gil is a Peruvian produce export professional with more than 12 years of experience working with mango, avocado, organic ginger, and organic turmeric for international markets including North America, Europe, and Asia.',
+        'about.p2': 'Through Andevara Produce, he now focuses on connecting trusted Peruvian supply with importers seeking reliability, transparency, and long-term commercial relationships.',
+        'about.b1': 'Hands-on understanding of sourcing, packing, cold chain, and export coordination.',
+        'about.b2': 'Commercial perspective shaped by years of working directly with international buyers.',
+        'about.b3': 'Clear focus on building dependable B2B relationships with commitment to traceability.',
+
+        'features.t1': 'Commitment traceability',
+        'features.p1': 'Visibility matters. Andevara is designed to support sourcing confidence through clearer product, season, and origin alignment.',
+        'features.t2': 'Commercial clarity',
+        'features.p2': 'A practical B2B approach focused on communication, realistic coordination, and buyer expectations.',
+        'features.t3': 'Export perspective',
+        'features.p3': 'Built from direct experience in sourcing, packing, logistics, and international customer management.',
+
+        'products.eyebrow': 'Products',
+        'products.title': 'Core produce categories presented with a premium, buyer-facing identity.',
+        'products.intro': 'The product section combines commercial positioning with strong visual storytelling to support a cleaner first impression for importers and distributors.',
+        'products.mango.tag': 'Premium fruit',
+        'products.mango.title': 'Mango Kent',
+        'products.mango.text': 'A visual centered on a Kent mango hanging from the tree inside a mango field reinforces origin, freshness, and supply connection from the first glance.',
+        'products.mango.b1': 'Strong visual emphasis on orchard origin and premium fruit presentation.',
+        'products.mango.b2': 'Suitable for importers looking for consistent seasonal planning and clear product identity.',
+        'products.avocado.tag': 'Field origin',
+        'products.avocado.title': 'Avocado Hass',
+        'products.avocado.text': 'The avocado section uses a Hass fruit hanging on the tree in an avocado field to communicate crop origin, natural growth, and export-ready identity.',
+        'products.avocado.b1': 'Premium orchard-style presentation aligned with a professional B2B website.',
+        'products.avocado.b2': 'Designed to support trust, product recognition, and buyer interest.',
+        'products.ginger.tag': 'Organic root',
+        'products.ginger.title': 'Organic Ginger',
+        'products.ginger.text': 'This section presents one whole ginger root and one cut in half, giving more product detail while keeping the visual style clean and premium.',
+        'products.ginger.b1': 'Highlights product texture and freshness without overloading the page.',
+        'products.ginger.b2': 'Supports a stronger visual identity for organic root categories.',
+        'products.turmeric.tag': 'Organic root',
+        'products.turmeric.title': 'Organic Turmeric',
+        'products.turmeric.text': 'The turmeric visual places a whole root above a cut piece to show the category clearly while maintaining a polished and modern presentation.',
+        'products.turmeric.b1': 'Bright inner color improves category differentiation and visual appeal.',
+        'products.turmeric.b2': 'Maintains consistency with the premium look used across the website.',
+
+        'season.eyebrow': 'Season Window',
+        'season.title': 'Clear seasonal visibility for buyer planning.',
+        'season.intro': 'The seasonal chart is structured to give a straightforward overview of main shipping windows for the core Andevara categories.',
+        'season.mainTitle': 'Main Season Overview',
+        'season.mango': 'October to March',
+        'season.avocado': 'April to September',
+        'season.ginger': 'July to January',
+        'season.turmeric': 'July to January',
+        'season.monthsTitle': 'Calendar Reference',
+        'season.monthsText': 'This monthly reference is included to keep the chart intuitive for international buyers reviewing possible sourcing windows.',
+        'season.stat1': 'Strategic categories',
+        'season.stat2': 'Organic root items',
+        'season.stat3': 'Planning-oriented layout',
+
+        'network.eyebrow': 'Supply Network',
+        'network.title': 'Product origin connected to logistics visibility.',
+        'network.intro': 'The supply section combines core product references with container and vessel elements to visually connect agricultural origin and export movement.',
+        'network.cardTitle': 'Integrated produce and export flow',
+        'network.cardText': 'Mango Kent, Avocado Hass, Organic Ginger, and Organic Turmeric are visually integrated with containers and container ships to reinforce the export-oriented identity of the brand.',
+
+        'contact.eyebrow': 'Contact',
+        'contact.title': 'Let’s connect around dependable Peruvian supply.',
+        'contact.text1': 'This contact section is designed for future outreach with importers, distributors, and sourcing partners interested in premium fruit and organic roots from Peru.',
+        'contact.text2': 'You can replace the sample fields below with your final business details, WhatsApp, LinkedIn profile, or inquiry form connection when ready.',
+        'contact.emailLabel': 'Email',
+        'contact.focusLabel': 'Focus',
+        'contact.focusValue': 'Mango Kent, Avocado Hass, Organic Ginger, Organic Turmeric',
+        'contact.modelLabel': 'Model',
+        'contact.modelValue': 'Premium produce brokerage for international buyers',
+        'contact.formTitle': 'Inquiry form preview',
+        'contact.formText': 'This front-end form is included as a visual placeholder. It can later be connected to Formspree, Netlify Forms, a custom email service, or your preferred CRM.',
+        'contact.name': 'Name',
+        'contact.email': 'Email',
+        'contact.message': 'Message',
+        'contact.namePlaceholder': 'Your name',
+        'contact.emailPlaceholder': 'Your email',
+        'contact.messagePlaceholder': 'Tell us about your sourcing needs',
+        'contact.submit': 'Send inquiry',
+
+        'footer.text': 'Premium Produce Brokerage focused on traceability, transparency, and long-term B2B relationships.',
+
+        'months.jan': 'Jan', 'months.feb': 'Feb', 'months.mar': 'Mar', 'months.apr': 'Apr', 'months.may': 'May', 'months.jun': 'Jun',
+        'months.jul': 'Jul', 'months.aug': 'Aug', 'months.sep': 'Sep', 'months.oct': 'Oct', 'months.nov': 'Nov', 'months.dec': 'Dec'
+      },
+      es: {
+        'brand.subtitle': 'Brokerage Premium de Productos Frescos',
+        'nav.about': 'Nosotros',
+        'nav.products': 'Productos',
+        'nav.season': 'Ventana de Temporada',
+        'nav.network': 'Red de Suministro',
+        'nav.contact': 'Contacto',
+
+        'hero.eyebrow': 'Origen Peruano Confiable',
+        'hero.title': 'Conectando productos peruanos confiables con mercados globales.',
+        'hero.text': 'Andevara Produce apoya a compradores internacionales que buscan abastecimiento confiable, coordinación de exportación y un socio comercial enfocado en trazabilidad, transparencia y relaciones de largo plazo.',
+        'hero.ctaPrimary': 'Contactar a Andevara',
+        'hero.ctaSecondary': 'Ver Productos',
+        'hero.stat1': 'Años de experiencia exportadora',
+        'hero.stat2': 'Categorías premium clave',
+        'hero.stat3': 'Modelo de brokerage enfocado en compradores',
+        'hero.badge': 'Compromiso con la trazabilidad',
+
+        'about.eyebrow': 'Sobre Andevara',
+        'about.title': 'Experiencia exportadora convertida en un modelo de brokerage enfocado.',
+        'about.intro': 'Andevara Produce integra entendimiento comercial, visibilidad de abastecimiento y coordinación práctica para compradores internacionales que buscan productos premium del Perú.',
+        'about.p1': 'Fardi Gil es un profesional peruano de exportación de productos frescos con más de 12 años de experiencia trabajando con mango, aguacate, jengibre orgánico y cúrcuma orgánica para mercados internacionales, incluyendo Norteamérica, Europa y Asia.',
+        'about.p2': 'A través de Andevara Produce, hoy se enfoca en conectar oferta peruana confiable con importadores que buscan confiabilidad, transparencia y relaciones comerciales de largo plazo.',
+        'about.b1': 'Conocimiento práctico de abastecimiento, empaque, cadena de frío y coordinación de exportación.',
+        'about.b2': 'Perspectiva comercial formada por años de trabajo directo con compradores internacionales.',
+        'about.b3': 'Enfoque claro en construir relaciones B2B confiables con compromiso con la trazabilidad.',
+
+        'features.t1': 'Compromiso con la trazabilidad',
+        'features.p1': 'La visibilidad importa. Andevara está diseñada para reforzar la confianza en el abastecimiento mediante una mejor alineación entre producto, temporada y origen.',
+        'features.t2': 'Claridad comercial',
+        'features.p2': 'Un enfoque B2B práctico, centrado en comunicación, coordinación realista y expectativas del comprador.',
+        'features.t3': 'Perspectiva exportadora',
+        'features.p3': 'Construido desde experiencia directa en abastecimiento, empaque, logística y manejo de clientes internacionales.',
+
+        'products.eyebrow': 'Productos',
+        'products.title': 'Categorías clave presentadas con una identidad premium orientada al comprador.',
+        'products.intro': 'La sección de productos combina posicionamiento comercial con una narrativa visual fuerte para generar una mejor primera impresión en importadores y distribuidores.',
+        'products.mango.tag': 'Fruta premium',
+        'products.mango.title': 'Mango Kent',
+        'products.mango.text': 'Una imagen centrada en un mango Kent colgando del árbol dentro de un campo de mangos refuerza origen, frescura y conexión con la oferta desde el primer vistazo.',
+        'products.mango.b1': 'Fuerte énfasis visual en el origen del huerto y la presentación premium de la fruta.',
+        'products.mango.b2': 'Adecuado para importadores que buscan planificación estacional consistente e identidad clara del producto.',
+        'products.avocado.tag': 'Origen de campo',
+        'products.avocado.title': 'Aguacate Hass',
+        'products.avocado.text': 'La sección de aguacate utiliza un Hass colgando del árbol en un campo de aguacates para comunicar origen del cultivo, crecimiento natural e identidad lista para exportación.',
+        'products.avocado.b1': 'Presentación tipo huerto premium alineada con un sitio web B2B profesional.',
+        'products.avocado.b2': 'Diseñada para apoyar confianza, reconocimiento del producto e interés del comprador.',
+        'products.ginger.tag': 'Raíz orgánica',
+        'products.ginger.title': 'Jengibre Orgánico',
+        'products.ginger.text': 'Esta sección presenta un jengibre entero y otro partido a la mitad, mostrando mejor el producto mientras mantiene un estilo visual limpio y premium.',
+        'products.ginger.b1': 'Resalta textura y frescura del producto sin sobrecargar la página.',
+        'products.ginger.b2': 'Refuerza una identidad visual más sólida para categorías de raíces orgánicas.',
+        'products.turmeric.tag': 'Raíz orgánica',
+        'products.turmeric.title': 'Cúrcuma Orgánica',
+        'products.turmeric.text': 'La visual de cúrcuma coloca una raíz entera sobre una partida a la mitad para mostrar claramente la categoría mientras conserva una presentación moderna y pulida.',
+        'products.turmeric.b1': 'El color interno brillante mejora la diferenciación de la categoría y el atractivo visual.',
+        'products.turmeric.b2': 'Mantiene consistencia con la estética premium utilizada en toda la web.',
+
+        'season.eyebrow': 'Ventana de Temporada',
+        'season.title': 'Visibilidad estacional clara para la planificación del comprador.',
+        'season.intro': 'El gráfico estacional está estructurado para ofrecer una visión directa de las ventanas principales de embarque para las categorías clave de Andevara.',
+        'season.mainTitle': 'Resumen de Temporada Principal',
+        'season.mango': 'Octubre a Marzo',
+        'season.avocado': 'Abril a Septiembre',
+        'season.ginger': 'Julio a Enero',
+        'season.turmeric': 'Julio a Enero',
+        'season.monthsTitle': 'Referencia del Calendario',
+        'season.monthsText': 'Esta referencia mensual se incluye para hacer el gráfico más intuitivo para compradores internacionales que revisan posibles ventanas de abastecimiento.',
+        'season.stat1': 'Categorías estratégicas',
+        'season.stat2': 'Productos orgánicos de raíz',
+        'season.stat3': 'Diseño orientado a planificación',
+
+        'network.eyebrow': 'Red de Suministro',
+        'network.title': 'Origen del producto conectado con visibilidad logística.',
+        'network.intro': 'La sección de suministro combina referencias visuales de los productos clave con elementos de contenedores y buques para conectar el origen agrícola con el movimiento de exportación.',
+        'network.cardTitle': 'Flujo integrado de producto y exportación',
+        'network.cardText': 'Mango Kent, Aguacate Hass, Jengibre Orgánico y Cúrcuma Orgánica se integran visualmente con contenedores y buques portacontenedores para reforzar la identidad exportadora de la marca.',
+
+        'contact.eyebrow': 'Contacto',
+        'contact.title': 'Conectemos alrededor de una oferta peruana confiable.',
+        'contact.text1': 'Esta sección de contacto está diseñada para un futuro acercamiento con importadores, distribuidores y socios de abastecimiento interesados en frutas premium y raíces orgánicas del Perú.',
+        'contact.text2': 'Puedes reemplazar los campos de muestra con tus datos comerciales finales, WhatsApp, perfil de LinkedIn o conexión con formulario cuando esté listo.',
+        'contact.emailLabel': 'Correo',
+        'contact.focusLabel': 'Enfoque',
+        'contact.focusValue': 'Mango Kent, Aguacate Hass, Jengibre Orgánico, Cúrcuma Orgánica',
+        'contact.modelLabel': 'Modelo',
+        'contact.modelValue': 'Brokerage premium de productos frescos para compradores internacionales',
+        'contact.formTitle': 'Vista previa del formulario',
+        'contact.formText': 'Este formulario frontal está incluido como marcador visual. Más adelante puede conectarse con Formspree, Netlify Forms, un servicio de correo personalizado o tu CRM preferido.',
+        'contact.name': 'Nombre',
+        'contact.email': 'Correo',
+        'contact.message': 'Mensaje',
+        'contact.namePlaceholder': 'Tu nombre',
+        'contact.emailPlaceholder': 'Tu correo',
+        'contact.messagePlaceholder': 'Cuéntanos sobre tus necesidades de abastecimiento',
+        'contact.submit': 'Enviar consulta',
+
+        'footer.text': 'Brokerage Premium de Productos Frescos enfocado en trazabilidad, transparencia y relaciones B2B de largo plazo.',
+
+        'months.jan': 'Ene', 'months.feb': 'Feb', 'months.mar': 'Mar', 'months.apr': 'Abr', 'months.may': 'May', 'months.jun': 'Jun',
+        'months.jul': 'Jul', 'months.aug': 'Ago', 'months.sep': 'Sep', 'months.oct': 'Oct', 'months.nov': 'Nov', 'months.dec': 'Dic'
+      }
+    };
+
+    let currentLang = 'en';
+    const langButtons = document.querySelectorAll('[data-lang-btn]');
+
+    function applyTranslations(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (translations[lang][key]) el.setAttribute('placeholder', translations[lang][key]);
+      });
+      langButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.langBtn === lang));
+    }
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener('click', () => applyTranslations(btn.dataset.langBtn));
+    });
+
+    applyTranslations('en');
+  </script>
 </body>
 </html>
