@@ -59,10 +59,14 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--green-dark);
-      letter-spacing: 0.2px;
+      flex-shrink: 0;
+    }
+
+    .brand img {
+      height: 72px;
+      width: auto;
+      max-width: min(100%, 430px);
+      object-fit: contain;
     }
 
     .nav-right {
@@ -70,6 +74,7 @@
       align-items: center;
       gap: 18px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links {
@@ -216,6 +221,7 @@
     .section-head {
       max-width: 760px;
       margin-bottom: 32px;
+      text-align: center;
     }
 
     .section-kicker {
@@ -238,6 +244,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 1.02rem;
+      text-align: center;
     }
 
     .split {
@@ -264,7 +271,6 @@
       background: #f4efe8;
     }
 
-    .check-grid,
     .season-grid,
     .product-grid,
     .trust-grid {
@@ -301,6 +307,7 @@
       margin: 0;
       color: var(--muted);
       font-size: 0.95rem;
+      text-align: center;
     }
 
     .product-grid {
@@ -324,6 +331,16 @@
     .panel-content p,
     .panel-content li {
       color: var(--muted);
+    }
+
+    .product-card .panel-content,
+    .season-card .panel-content {
+      text-align: center;
+    }
+
+    .product-card p,
+    .season-card p {
+      text-align: center;
     }
 
     .panel-content ul {
@@ -439,29 +456,16 @@
       .panel-content,
       .contact-box .left,
       .contact-box .right { padding: 22px; }
+      .brand img { height: 58px; max-width: 320px; }
     }
-  
-
-    /* Center text for trust, product, and season sections as requested */
-    .trust-card,
-    .product-card .panel-content,
-    .season-card .panel-content,
-    .section-head {
-      text-align: center;
-    }
-
-    .trust-card p,
-    .product-card p,
-    .season-card p {
-      text-align: center;
-    }
-
-</style>
+  </style>
 </head>
 <body>
   <div class="topbar">
     <div class="container nav">
-      <a href="#home" class="brand"><img src="andevara-logo.png" alt="Andevara Produce logo" style="height:58px; width:auto; display:block;"></a>
+      <a href="#home" class="brand">
+        <img src="andevara-logo.png.png" alt="Andevara Produce logo" />
+      </a>
       <div class="nav-right">
         <div class="nav-links">
           <a href="#about" data-i18n="nav.about">About</a>
