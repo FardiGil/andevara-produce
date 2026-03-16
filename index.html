@@ -54,7 +54,7 @@
 
     p {
       text-align: justify;
-      margin-top: 0;
+      margin: 0 0 14px 0;
     }
 
     .container {
@@ -164,15 +164,15 @@
     }
 
     .hero {
-  min-height: 88vh;
-  color: var(--white);
-  background:
-    linear-gradient(rgba(12, 32, 24, 0.62), rgba(12, 32, 24, 0.70)),
-    url('hero-andevara-produce.png') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
+      min-height: 88vh;
+      color: var(--white);
+      background:
+        linear-gradient(rgba(12, 32, 24, 0.62), rgba(12, 32, 24, 0.70)),
+        url('hero-andevara-produce.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
 
     .hero::before {
       content: "";
@@ -355,7 +355,7 @@
     }
 
     .panel-content {
-      padding: 30px;
+      padding: 34px 34px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -370,6 +370,10 @@
     .panel-content ul {
       margin: 12px 0 0;
       padding-left: 18px;
+    }
+
+    .panel-content p:last-child {
+      margin-bottom: 0;
     }
 
     .founder-photo {
@@ -1016,6 +1020,7 @@
               href="mailto:fgil@andevaraproduce.com?subject=Inquiry%20from%20Andevara%20Produce%20website&body=Hello%20Fardi,%20I%20would%20like%20to%20learn%20more%20about%20your%20Peruvian%20produce%20offering."
               data-i18n="contact.cta"
             >Email Us</a>
+
           </div>
 
           <div class="contact-note" data-i18n="contact.note">
