@@ -23,13 +23,16 @@
       --shadow: 0 12px 30px rgba(79, 63, 53, 0.08);
       --shadow-soft: 0 8px 24px rgba(79, 63, 53, 0.05);
       --radius: 18px;
-      --radius-lg: 24px;
       --max: 1180px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
@@ -88,7 +91,6 @@
       width: auto;
       max-width: min(100%, 500px);
       object-fit: contain;
-      display: block;
     }
 
     .nav-right {
@@ -188,7 +190,7 @@
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 36px;
-      align-items: end;
+      align-items: stretch;
       padding: 88px 0;
     }
 
@@ -201,6 +203,12 @@
       background: rgba(255,255,255,0.08);
       margin-bottom: 18px;
       letter-spacing: 0.3px;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero h1 {
@@ -268,6 +276,10 @@
       padding: 24px;
       backdrop-filter: blur(8px);
       box-shadow: var(--shadow);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero-card h3 {
@@ -330,7 +342,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 34px;
-      align-items: center;
+      align-items: stretch;
     }
 
     .panel {
@@ -339,10 +351,15 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
+      height: 100%;
     }
 
     .panel-content {
       padding: 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .panel-content p,
@@ -356,15 +373,16 @@
     }
 
     .founder-photo {
-      min-height: 460px;
-      background: #f4efe8;
+      height: 100%;
+      min-height: 100%;
+      display: flex;
     }
 
     .founder-photo img {
       width: 100%;
       height: 100%;
-      min-height: 460px;
       object-fit: cover;
+      flex: 1;
     }
 
     .trust-grid,
@@ -380,18 +398,9 @@
       grid-template-columns: repeat(5, 1fr);
     }
 
-    .services-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .proof-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .product-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
+    .services-grid,
+    .proof-grid,
+    .product-grid,
     .season-grid {
       grid-template-columns: repeat(4, 1fr);
     }
@@ -407,6 +416,7 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: transform 0.22s ease, box-shadow 0.22s ease;
+      height: 100%;
     }
 
     .trust-card:hover,
@@ -444,17 +454,14 @@
 
     .product-image {
       height: 235px;
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
       border-bottom: 1px solid var(--border);
+      overflow: hidden;
     }
 
     .product-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     .product-card h3,
@@ -472,6 +479,7 @@
     .product-card .panel-content,
     .season-card .panel-content {
       text-align: center;
+      justify-content: flex-start;
     }
 
     .season-badge {
@@ -497,7 +505,7 @@
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
       gap: 28px;
-      align-items: center;
+      align-items: stretch;
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 24px;
@@ -506,15 +514,15 @@
     }
 
     .network-image {
-      min-height: 380px;
-      background: #f4efe8;
+      height: 100%;
+      display: flex;
     }
 
     .network-image img {
       width: 100%;
       height: 100%;
-      min-height: 380px;
       object-fit: cover;
+      flex: 1;
     }
 
     .contact-box {
@@ -588,6 +596,10 @@
       .trust-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .founder-photo {
+        min-height: 420px;
+      }
     }
 
     @media (max-width: 720px) {
@@ -636,6 +648,10 @@
       .hero p {
         text-align: left;
       }
+
+      .founder-photo {
+        min-height: 320px;
+      }
     }
   </style>
 </head>
@@ -666,7 +682,7 @@
 
   <header class="hero" id="home">
     <div class="container hero-grid">
-      <div>
+      <div class="hero-copy">
         <div class="eyebrow" data-i18n="hero.eyebrow">Premium Produce Brokerage</div>
         <h1 data-i18n="hero.title">Connecting Reliable Peruvian Produce with North American Importers</h1>
         <p data-i18n="hero.text">
