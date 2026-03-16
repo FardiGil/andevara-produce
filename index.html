@@ -4,35 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andevara Produce | Premium Produce Brokerage</title>
-  <meta name="description" content="Andevara Produce connects reliable Peruvian produce with North American importers, with a focus on mango, Hass avocado, organic ginger, and organic turmeric." />
+  <meta
+    name="description"
+    content="Andevara Produce connects reliable Peruvian produce with North American importers, with a focus on Kent mango, Hass avocado, organic ginger, and organic turmeric."
+  />
   <style>
     :root {
       --green-dark: #0b5a3a;
       --green: #00a651;
       --green-soft: #f4efe8;
       --gold: #fe5000;
+      --gold-dark: #dc4600;
       --text: #4f3f35;
       --muted: #76665c;
       --white: #ffffff;
       --border: #e4d8cb;
-      --shadow: 0 12px 30px rgba(79,63,53,0.08);
+      --bg: #fcfaf7;
+      --shadow: 0 12px 30px rgba(79, 63, 53, 0.08);
+      --shadow-soft: 0 8px 24px rgba(79, 63, 53, 0.05);
       --radius: 18px;
+      --radius-lg: 24px;
       --max: 1180px;
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: #fcfaf7;
+      background: var(--bg);
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    p { text-align: justify; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    p {
+      text-align: justify;
+      margin-top: 0;
+    }
 
     .container {
       width: min(var(--max), calc(100% - 32px));
@@ -42,11 +62,11 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(255,255,255,0.96);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(11,90,58,0.10);
-      box-shadow: 0 8px 24px rgba(79,63,53,0.04);
+      border-bottom: 1px solid rgba(11, 90, 58, 0.10);
+      box-shadow: 0 8px 24px rgba(79, 63, 53, 0.04);
     }
 
     .nav {
@@ -82,14 +102,36 @@
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      gap: 24px;
       flex-wrap: wrap;
       color: var(--muted);
-      font-size: 1rem;
-      font-weight: 500;
+      font-size: 0.98rem;
+      font-weight: 600;
     }
 
-    .nav-links a:hover { color: var(--green-dark); }
+    .nav-links a {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--green-dark);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--green);
+      transition: width 0.22s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
     .lang-switch {
       display: inline-flex;
@@ -99,6 +141,7 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       background: var(--white);
+      box-shadow: var(--shadow-soft);
     }
 
     .lang-btn {
@@ -110,6 +153,7 @@
       padding: 8px 12px;
       border-radius: 999px;
       cursor: pointer;
+      transition: 0.2s ease;
     }
 
     .lang-btn.active {
@@ -118,21 +162,34 @@
     }
 
     .hero {
-      min-height: 84vh;
+      min-height: 88vh;
       color: var(--white);
       background:
-        linear-gradient(rgba(12, 32, 24, 0.62), rgba(12, 32, 24, 0.68)),
+        linear-gradient(rgba(12, 32, 24, 0.62), rgba(12, 32, 24, 0.70)),
         url('YOUR-HERO-PHOTO.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.10), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(0,166,81,0.14), transparent 32%);
+      pointer-events: none;
     }
 
     .hero-grid {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 36px;
       align-items: end;
-      padding: 80px 0;
+      padding: 88px 0;
     }
 
     .eyebrow {
@@ -143,20 +200,22 @@
       font-size: 0.9rem;
       background: rgba(255,255,255,0.08);
       margin-bottom: 18px;
+      letter-spacing: 0.3px;
     }
 
     .hero h1 {
       font-size: clamp(2.35rem, 5vw, 4.5rem);
       line-height: 1.05;
       margin: 0 0 18px;
-      max-width: 780px;
+      max-width: 790px;
     }
 
     .hero p {
       font-size: 1.08rem;
-      max-width: 690px;
+      max-width: 700px;
       margin: 0 0 26px;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255,255,255,0.93);
+      text-align: left;
     }
 
     .hero-actions {
@@ -173,21 +232,33 @@
       padding: 14px 22px;
       border-radius: 999px;
       font-weight: 700;
-      transition: 0.2s ease;
+      transition: 0.22s ease;
       border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
     }
 
     .btn-primary {
       background: var(--gold);
       color: var(--white);
+      box-shadow: 0 10px 20px rgba(254, 80, 0, 0.18);
     }
 
-    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-primary:hover {
+      background: var(--gold-dark);
+    }
 
     .btn-secondary {
       background: transparent;
       color: var(--white);
       border-color: rgba(255,255,255,0.38);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
     }
 
     .hero-card {
@@ -202,6 +273,7 @@
     .hero-card h3 {
       margin: 0 0 14px;
       font-size: 1.1rem;
+      color: var(--white);
     }
 
     .hero-card ul {
@@ -214,17 +286,20 @@
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.14);
       font-size: 0.98rem;
+      color: rgba(255,255,255,0.92);
     }
 
-    .hero-card li:last-child { border-bottom: none; }
+    .hero-card li:last-child {
+      border-bottom: none;
+    }
 
     section {
-      padding: 84px 0;
+      padding: 88px 0;
     }
 
     .section-head {
-      max-width: 760px;
-      margin-bottom: 32px;
+      max-width: 780px;
+      margin: 0 auto 34px;
       text-align: center;
     }
 
@@ -267,17 +342,36 @@
     }
 
     .panel-content {
-      padding: 28px;
+      padding: 30px;
+    }
+
+    .panel-content p,
+    .panel-content li {
+      color: var(--muted);
+    }
+
+    .panel-content ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
     }
 
     .founder-photo {
-      min-height: 440px;
+      min-height: 460px;
       background: #f4efe8;
     }
 
-    .season-grid,
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 460px;
+      object-fit: cover;
+    }
+
+    .trust-grid,
     .product-grid,
-    .trust-grid {
+    .season-grid,
+    .services-grid,
+    .proof-grid {
       display: grid;
       gap: 22px;
     }
@@ -286,36 +380,66 @@
       grid-template-columns: repeat(5, 1fr);
     }
 
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .proof-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .season-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .trust-card,
     .season-card,
-    .product-card {
+    .product-card,
+    .service-card,
+    .proof-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .trust-card {
+    .trust-card:hover,
+    .season-card:hover,
+    .product-card:hover,
+    .service-card:hover,
+    .proof-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(79,63,53,0.10);
+    }
+
+    .trust-card,
+    .proof-card,
+    .service-card {
       padding: 24px 20px;
       text-align: center;
     }
 
-    .trust-card h3 {
-      margin: 0 0 8px;
+    .trust-card h3,
+    .proof-card h3,
+    .service-card h3 {
+      margin: 0 0 10px;
       color: var(--green-dark);
-      font-size: 1.02rem;
+      font-size: 1.03rem;
     }
 
-    .trust-card p {
+    .trust-card p,
+    .proof-card p,
+    .service-card p {
       margin: 0;
       color: var(--muted);
       font-size: 0.95rem;
       text-align: center;
-    }
-
-    .product-grid {
-      grid-template-columns: repeat(4, 1fr);
     }
 
     .product-image {
@@ -340,29 +464,14 @@
     }
 
     .product-card p,
-    .season-card p,
-    .panel-content p,
-    .panel-content li {
+    .season-card p {
       color: var(--muted);
+      text-align: center;
     }
 
     .product-card .panel-content,
     .season-card .panel-content {
       text-align: center;
-    }
-
-    .product-card p,
-    .season-card p {
-      text-align: center;
-    }
-
-    .panel-content ul {
-      margin: 12px 0 0;
-      padding-left: 18px;
-    }
-
-    .season-grid {
-      grid-template-columns: repeat(4, 1fr);
     }
 
     .season-badge {
@@ -374,6 +483,10 @@
       padding: 7px 12px;
       border-radius: 999px;
       margin-bottom: 14px;
+    }
+
+    .services-section {
+      background: linear-gradient(180deg, #fcfaf7 0%, #f8f4ee 100%);
     }
 
     .network {
@@ -393,8 +506,15 @@
     }
 
     .network-image {
-      min-height: 360px;
+      min-height: 380px;
       background: #f4efe8;
+    }
+
+    .network-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      object-fit: cover;
     }
 
     .contact-box {
@@ -410,7 +530,7 @@
 
     .contact-box .left,
     .contact-box .right {
-      padding: 34px;
+      padding: 36px;
     }
 
     .contact-box .right {
@@ -425,7 +545,8 @@
 
     .contact-box p,
     .contact-box li {
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.90);
+      text-align: left;
     }
 
     .contact-list {
@@ -439,6 +560,12 @@
       font-size: 1rem;
     }
 
+    .contact-note {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.78);
+    }
+
     footer {
       padding: 28px 0 40px;
       text-align: center;
@@ -447,29 +574,68 @@
     }
 
     @media (max-width: 1100px) {
-      .product-grid,
-      .season-grid,
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-grid,
       .split,
       .network-box,
-      .contact-box { grid-template-columns: 1fr; }
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid,
+      .season-grid,
+      .services-grid,
+      .proof-grid,
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 720px) {
-      .nav { flex-direction: column; align-items: flex-start; }
-      .nav-right { width: 100%; align-items: flex-start; }
-      .nav-links { gap: 14px; }
-      .hero { min-height: auto; }
-      section { padding: 62px 0; }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-right {
+        width: 100%;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
       .product-grid,
       .season-grid,
-      .trust-grid { grid-template-columns: 1fr; }
+      .services-grid,
+      .proof-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
       .hero-card,
       .panel-content,
       .contact-box .left,
-      .contact-box .right { padding: 22px; }
-      .brand img { height: 64px; max-width: 340px; }
+      .contact-box .right {
+        padding: 22px;
+      }
+
+      .brand img {
+        height: 64px;
+        max-width: 340px;
+      }
+
+      .hero p {
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -479,17 +645,20 @@
       <a href="#home" class="brand">
         <img src="https://andevaraproduce.com/andevara-header-logo.png" alt="Andevara Produce logo" />
       </a>
+
       <div class="nav-right">
         <div class="nav-links">
           <a href="#about" data-i18n="nav.about">About</a>
           <a href="#products" data-i18n="nav.products">Products</a>
+          <a href="#services" data-i18n="nav.services">How We Support Buyers</a>
           <a href="#seasons" data-i18n="nav.seasons">Seasons</a>
           <a href="#network" data-i18n="nav.network">Supply Network</a>
           <a href="#contact" data-i18n="nav.contact">Contact</a>
         </div>
+
         <div class="lang-switch">
-          <button class="lang-btn active" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="es">ES</button>
+          <button class="lang-btn active" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="es" type="button">ES</button>
         </div>
       </div>
     </div>
@@ -501,10 +670,16 @@
         <div class="eyebrow" data-i18n="hero.eyebrow">Premium Produce Brokerage</div>
         <h1 data-i18n="hero.title">Connecting Reliable Peruvian Produce with North American Importers</h1>
         <p data-i18n="hero.text">
-          Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking mango, Hass avocado, organic ginger, and organic turmeric from Peru.
+          Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking Kent mango, Hass avocado, organic ginger, and organic turmeric from Peru.
         </p>
+
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Get in Touch</a>
+          <a
+            class="btn btn-primary"
+            href="mailto:fgil@andevaraproduce.com?subject=Inquiry%20from%20Andevara%20Produce%20website&body=Hello%20Fardi,%20I%20would%20like%20to%20learn%20more%20about%20your%20Peruvian%20produce%20offering."
+            data-i18n="hero.cta1"
+          >Get in Touch</a>
+
           <a class="btn btn-secondary" href="#products" data-i18n="hero.cta2">View Products</a>
         </div>
       </div>
@@ -532,7 +707,13 @@
       </div>
 
       <div class="split">
-        <div class="panel founder-photo"><img src="about-shelf-figure.png" alt="Display shelf with Kent mango, Hass avocado, organic ginger, and organic turmeric" style="width:100%;height:100%;object-fit:cover;min-height:440px;"></div>
+        <div class="panel founder-photo">
+          <img
+            src="about-shelf-figure.png"
+            alt="Display shelf with Kent mango, Hass avocado, organic ginger, and organic turmeric"
+          />
+        </div>
+
         <div class="panel">
           <div class="panel-content">
             <p data-i18n="about.p1">
@@ -571,18 +752,22 @@
           <h3 data-i18n="trust.c1t">Supply Chain Knowledge</h3>
           <p data-i18n="trust.c1p">Direct understanding of Peruvian sourcing, packing, logistics, and export documentation.</p>
         </div>
+
         <div class="trust-card">
           <h3 data-i18n="trust.c2t">Grower Relationships</h3>
           <p data-i18n="trust.c2p">Strong connection to origin and a practical understanding of product flow and quality expectations.</p>
         </div>
+
         <div class="trust-card">
           <h3 data-i18n="trust.c3t">Commercial Clarity</h3>
           <p data-i18n="trust.c3p">Professional communication that reflects the needs of importers, distributors, and retail supply teams.</p>
         </div>
+
         <div class="trust-card">
           <h3 data-i18n="trust.c4t">Traceability Focus</h3>
           <p data-i18n="trust.c4p">Commitment to traceability, transparency, and consistent follow-through across the supply process.</p>
         </div>
+
         <div class="trust-card">
           <h3 data-i18n="trust.c5t">Long-Term Mindset</h3>
           <p data-i18n="trust.c5p">Partnership-driven approach designed to build trust over time, not just close one transaction.</p>
@@ -603,7 +788,9 @@
 
       <div class="product-grid">
         <article class="product-card">
-          <div class="product-image"><img src="01-kent-mango-export.png" alt="Kent Mangoes in export wooden crate"></div>
+          <div class="product-image">
+            <img src="01-kent-mango-export.png" alt="Kent Mangoes in export wooden crate" />
+          </div>
           <div class="panel-content">
             <h3 data-i18n="products.mango.title">Kent Mango</h3>
             <p data-i18n="products.mango.text">Export-oriented sourcing from Peru with a commercial focus on quality, presentation, and timing.</p>
@@ -611,7 +798,9 @@
         </article>
 
         <article class="product-card">
-          <div class="product-image"><img src="02-hass-avocados-export.png" alt="Hass Avocados in export wooden crate"></div>
+          <div class="product-image">
+            <img src="02-hass-avocados-export.png" alt="Hass Avocados in export wooden crate" />
+          </div>
           <div class="panel-content">
             <h3 data-i18n="products.avocado.title">Hass Avocado</h3>
             <p data-i18n="products.avocado.text">Reliable supply coordination for buyers looking for dependable product flow and market-oriented support.</p>
@@ -619,7 +808,9 @@
         </article>
 
         <article class="product-card">
-          <div class="product-image"><img src="03-organic-ginger-export.png" alt="Organic Ginger in export wooden crate"></div>
+          <div class="product-image">
+            <img src="03-organic-ginger-export.png" alt="Organic Ginger in export wooden crate" />
+          </div>
           <div class="panel-content">
             <h3 data-i18n="products.ginger.title">Organic Ginger</h3>
             <p data-i18n="products.ginger.text">Peruvian organic ginger sourced with a focus on trusted origin, export readiness, and buyer communication.</p>
@@ -627,12 +818,82 @@
         </article>
 
         <article class="product-card">
-          <div class="product-image"><img src="04-organic-turmeric-export.png" alt="Organic Turmeric in export wooden crate"></div>
+          <div class="product-image">
+            <img src="04-organic-turmeric-export.png" alt="Organic Turmeric in export wooden crate" />
+          </div>
           <div class="panel-content">
             <h3 data-i18n="products.turmeric.title">Organic Turmeric</h3>
             <p data-i18n="products.turmeric.text">Premium Peruvian turmeric positioned for partners who value quality, transparency, and long-term supply discussions.</p>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker" data-i18n="services.kicker">How We Support Buyers</div>
+        <h2 data-i18n="services.title">Commercial support designed for serious importers and distributors</h2>
+        <p data-i18n="services.intro">
+          Andevara Produce is positioned as a sourcing and brokerage partner that helps bridge origin capabilities in Peru with buyer expectations in North America.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <h3 data-i18n="services.c1t">Product Sourcing</h3>
+          <p data-i18n="services.c1p">Support in connecting buyers with trusted Peruvian supply aligned with product category, timing, and commercial expectations.</p>
+        </div>
+
+        <div class="service-card">
+          <h3 data-i18n="services.c2t">Export Coordination</h3>
+          <p data-i18n="services.c2p">Practical understanding of packing, logistics, shipping flow, and export processes that help keep communication clear.</p>
+        </div>
+
+        <div class="service-card">
+          <h3 data-i18n="services.c3t">Buyer Communication</h3>
+          <p data-i18n="services.c3p">Professional communication shaped by real export experience and aligned with importer and distributor needs.</p>
+        </div>
+
+        <div class="service-card">
+          <h3 data-i18n="services.c4t">Long-Term Relationships</h3>
+          <p data-i18n="services.c4p">A partnership mindset focused on reliability, transparency, and consistent follow-through over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker" data-i18n="proof.kicker">Commercial Credibility</div>
+        <h2 data-i18n="proof.title">A background built on real export execution</h2>
+        <p data-i18n="proof.intro">
+          Beyond brokerage positioning, Andevara Produce is supported by hands-on experience across products, markets, and operational coordination.
+        </p>
+      </div>
+
+      <div class="proof-grid">
+        <div class="proof-card">
+          <h3 data-i18n="proof.c1t">International Market Exposure</h3>
+          <p data-i18n="proof.c1p">Experience supporting international business across North America, Europe, and Asia.</p>
+        </div>
+
+        <div class="proof-card">
+          <h3 data-i18n="proof.c2t">Category Familiarity</h3>
+          <p data-i18n="proof.c2p">Commercial background in Kent mango, Hass avocado, organic ginger, and organic turmeric.</p>
+        </div>
+
+        <div class="proof-card">
+          <h3 data-i18n="proof.c3t">Operational Understanding</h3>
+          <p data-i18n="proof.c3p">Knowledge of growers, packing operations, cold chain, logistics, and export documentation.</p>
+        </div>
+
+        <div class="proof-card">
+          <h3 data-i18n="proof.c4t">Canada–Peru Positioning</h3>
+          <p data-i18n="proof.c4p">Based in Canada with practical Peru origin knowledge to support buyer-oriented conversations.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -702,16 +963,24 @@
           <p data-i18n="network.p1">
             Andevara Produce works closely with experienced growers, packing operations, and logistics partners in Peru to help support quality expectations, communication, and reliable coordination for international buyers.
           </p>
+
           <p data-i18n="network.p2">
             Rather than presenting ourselves as a generic trader, we position the business as a sourcing and brokerage partner that understands both origin realities and buyer standards.
           </p>
+
           <ul>
             <li data-i18n="network.li1">Close understanding of product origin and supply timing</li>
             <li data-i18n="network.li2">Coordination mindset shaped by export experience</li>
             <li data-i18n="network.li3">Professional communication designed for B2B relationships</li>
           </ul>
         </div>
-        <div class="network-image"><img src="SUPPLY-NETWORK-PRODUCE-CONTAINERS-SHIP.jpg" alt="Kent mango, Hass avocado, organic ginger, and organic turmeric integrated with containers and container ships" style="width:100%;height:100%;object-fit:cover;min-height:360px;"></div>
+
+        <div class="network-image">
+          <img
+            src="SUPPLY-NETWORK-PRODUCE-CONTAINERS-SHIP.jpg"
+            alt="Kent mango, Hass avocado, organic ginger, and organic turmeric integrated with containers and container ships"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -724,10 +993,20 @@
           <p data-i18n="contact.text">
             If you are an importer or distributor interested in Peruvian produce, Andevara Produce would be glad to start a conversation.
           </p>
+
           <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:fgil@andevaraproduce.com" data-i18n="contact.cta">Email Us</a>
+            <a
+              class="btn btn-primary"
+              href="mailto:fgil@andevaraproduce.com?subject=Inquiry%20from%20Andevara%20Produce%20website&body=Hello%20Fardi,%20I%20would%20like%20to%20learn%20more%20about%20your%20Peruvian%20produce%20offering."
+              data-i18n="contact.cta"
+            >Email Us</a>
+          </div>
+
+          <div class="contact-note" data-i18n="contact.note">
+            We welcome conversations with importers, distributors, and buyers interested in reliable long-term sourcing relationships.
           </div>
         </div>
+
         <div class="right">
           <h3 data-i18n="contact.infoTitle">Contact Information</h3>
           <ul class="contact-list">
@@ -753,13 +1032,14 @@
       en: {
         'nav.about': 'About',
         'nav.products': 'Products',
+        'nav.services': 'How We Support Buyers',
         'nav.seasons': 'Seasons',
         'nav.network': 'Supply Network',
         'nav.contact': 'Contact',
 
         'hero.eyebrow': 'Premium Produce Brokerage',
         'hero.title': 'Connecting Reliable Peruvian Produce with North American Importers',
-        'hero.text': 'Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking mango, Hass avocado, organic ginger, and organic turmeric from Peru.',
+        'hero.text': 'Andevara Produce brings together export experience, trusted grower relationships, and commercial coordination for buyers seeking Kent mango, Hass avocado, organic ginger, and organic turmeric from Peru.',
         'hero.cta1': 'Get in Touch',
         'hero.cta2': 'View Products',
         'hero.cardTitle': 'Why Andevara Produce',
@@ -802,6 +1082,30 @@
         'products.turmeric.title': 'Organic Turmeric',
         'products.turmeric.text': 'Premium Peruvian turmeric positioned for partners who value quality, transparency, and long-term supply discussions.',
 
+        'services.kicker': 'How We Support Buyers',
+        'services.title': 'Commercial support designed for serious importers and distributors',
+        'services.intro': 'Andevara Produce is positioned as a sourcing and brokerage partner that helps bridge origin capabilities in Peru with buyer expectations in North America.',
+        'services.c1t': 'Product Sourcing',
+        'services.c1p': 'Support in connecting buyers with trusted Peruvian supply aligned with product category, timing, and commercial expectations.',
+        'services.c2t': 'Export Coordination',
+        'services.c2p': 'Practical understanding of packing, logistics, shipping flow, and export processes that help keep communication clear.',
+        'services.c3t': 'Buyer Communication',
+        'services.c3p': 'Professional communication shaped by real export experience and aligned with importer and distributor needs.',
+        'services.c4t': 'Long-Term Relationships',
+        'services.c4p': 'A partnership mindset focused on reliability, transparency, and consistent follow-through over time.',
+
+        'proof.kicker': 'Commercial Credibility',
+        'proof.title': 'A background built on real export execution',
+        'proof.intro': 'Beyond brokerage positioning, Andevara Produce is supported by hands-on experience across products, markets, and operational coordination.',
+        'proof.c1t': 'International Market Exposure',
+        'proof.c1p': 'Experience supporting international business across North America, Europe, and Asia.',
+        'proof.c2t': 'Category Familiarity',
+        'proof.c2p': 'Commercial background in Kent mango, Hass avocado, organic ginger, and organic turmeric.',
+        'proof.c3t': 'Operational Understanding',
+        'proof.c3p': 'Knowledge of growers, packing operations, cold chain, logistics, and export documentation.',
+        'proof.c4t': 'Canada–Peru Positioning',
+        'proof.c4p': 'Based in Canada with practical Peru origin knowledge to support buyer-oriented conversations.',
+
         'seasons.kicker': 'Peru Seasonal Calendar',
         'seasons.title': 'Product seasons that help buyers plan ahead',
         'seasons.intro': 'Seasonal visibility helps buyers plan sourcing programs with greater clarity and better coordination.',
@@ -835,19 +1139,22 @@
         'contact.infoTitle': 'Contact Information',
         'contact.role': 'Founder – Andevara Produce',
         'contact.location': 'Based in Canada — Connected to Peru',
+        'contact.note': 'We welcome conversations with importers, distributors, and buyers interested in reliable long-term sourcing relationships.',
 
         'footer.text': '© 2026 Andevara Produce. Premium Produce Brokerage connecting Peru with North America.'
       },
+
       es: {
         'nav.about': 'Nosotros',
         'nav.products': 'Productos',
+        'nav.services': 'Cómo apoyamos a los compradores',
         'nav.seasons': 'Temporadas',
         'nav.network': 'Red de Suministro',
         'nav.contact': 'Contacto',
 
         'hero.eyebrow': 'Brokerage Premium de Productos Frescos',
         'hero.title': 'Conectando productos peruanos confiables con importadores de Norteamérica',
-        'hero.text': 'Andevara Produce reúne experiencia exportadora, relaciones confiables con productores y coordinación comercial para compradores que buscan mango, aguacate Hass, jengibre orgánico y cúrcuma orgánica del Perú.',
+        'hero.text': 'Andevara Produce reúne experiencia exportadora, relaciones confiables con productores y coordinación comercial para compradores que buscan mango Kent, aguacate Hass, jengibre orgánico y cúrcuma orgánica del Perú.',
         'hero.cta1': 'Contáctanos',
         'hero.cta2': 'Ver Productos',
         'hero.cardTitle': 'Por qué Andevara Produce',
@@ -890,6 +1197,30 @@
         'products.turmeric.title': 'Cúrcuma Orgánica',
         'products.turmeric.text': 'Cúrcuma peruana premium posicionada para socios que valoran calidad, transparencia y conversaciones de suministro de largo plazo.',
 
+        'services.kicker': 'Cómo apoyamos a los compradores',
+        'services.title': 'Soporte comercial diseñado para importadores y distribuidores serios',
+        'services.intro': 'Andevara Produce se posiciona como un socio de abastecimiento y brokerage que ayuda a conectar las capacidades de origen en el Perú con las expectativas del comprador en Norteamérica.',
+        'services.c1t': 'Abastecimiento de Producto',
+        'services.c1p': 'Apoyo para conectar compradores con oferta peruana confiable alineada con categoría de producto, timing y expectativas comerciales.',
+        'services.c2t': 'Coordinación de Exportación',
+        'services.c2p': 'Entendimiento práctico de empaque, logística, flujo de embarque y procesos de exportación que ayudan a mantener una comunicación clara.',
+        'services.c3t': 'Comunicación con el Comprador',
+        'services.c3p': 'Comunicación profesional formada por experiencia exportadora real y alineada con las necesidades de importadores y distribuidores.',
+        'services.c4t': 'Relaciones de Largo Plazo',
+        'services.c4p': 'Mentalidad de alianza enfocada en confiabilidad, transparencia y seguimiento consistente en el tiempo.',
+
+        'proof.kicker': 'Credibilidad Comercial',
+        'proof.title': 'Una base construida sobre ejecución exportadora real',
+        'proof.intro': 'Más allá del posicionamiento como brokerage, Andevara Produce está respaldada por experiencia práctica en productos, mercados y coordinación operativa.',
+        'proof.c1t': 'Exposición a Mercados Internacionales',
+        'proof.c1p': 'Experiencia apoyando negocios internacionales en Norteamérica, Europa y Asia.',
+        'proof.c2t': 'Conocimiento de Categorías',
+        'proof.c2p': 'Trayectoria comercial en mango Kent, aguacate Hass, jengibre orgánico y cúrcuma orgánica.',
+        'proof.c3t': 'Entendimiento Operativo',
+        'proof.c3p': 'Conocimiento de productores, operaciones de empaque, cadena de frío, logística y documentación de exportación.',
+        'proof.c4t': 'Posicionamiento Canadá–Perú',
+        'proof.c4p': 'Basado en Canadá con conocimiento práctico del origen peruano para apoyar conversaciones orientadas al comprador.',
+
         'seasons.kicker': 'Calendario Estacional del Perú',
         'seasons.title': 'Temporadas de producto que ayudan a los compradores a planificar con anticipación',
         'seasons.intro': 'La visibilidad estacional ayuda a los compradores a planificar programas de abastecimiento con mayor claridad y mejor coordinación.',
@@ -923,6 +1254,7 @@
         'contact.infoTitle': 'Información de Contacto',
         'contact.role': 'Fundador – Andevara Produce',
         'contact.location': 'Basado en Canadá — conectado con el Perú',
+        'contact.note': 'Damos la bienvenida a conversaciones con importadores, distribuidores y compradores interesados en relaciones de abastecimiento confiables y de largo plazo.',
 
         'footer.text': '© 2026 Andevara Produce. Brokerage Premium de Productos Frescos conectando el Perú con Norteamérica.'
       }
@@ -932,12 +1264,14 @@
 
     function setLanguage(lang) {
       document.documentElement.lang = lang;
+
       document.querySelectorAll('[data-i18n]').forEach((element) => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
           element.textContent = translations[lang][key];
         }
       });
+
       langButtons.forEach((button) => {
         button.classList.toggle('active', button.dataset.lang === lang);
       });
